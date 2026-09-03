@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mindful Parenting Guide</title>
+    <!-- html2pdf.js for Client-Side PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary: #e65100;
+            --primary-light: #fff3e0;
+            --secondary: #2e7d32;
+            --secondary-light: #e8f5e9;
+            --bg-main: #fcfbf9;
+            --bg-card: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #607d8b;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* Top Header */
+        header {
+            background: var(--bg-card);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 3.5rem 1.5rem 2rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        /* Section Cards & Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            overflow: visible;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .card:hover, .card:focus-within {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            z-index: 500;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Interactive Hover Tooltips */
+        .tooltip-term {
+            position: relative;
+            cursor: help;
+            border-bottom: 2px dotted var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .tooltip-term .tooltip-text {
+            visibility: hidden;
+            width: 270px;
+            background-color: #222;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            position: absolute;
+            z-index: 9999;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            font-size: 0.85rem;
+            font-weight: 400;
+            line-height: 1.45;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            pointer-events: none;
+        }
+
+        .tooltip-term .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #222 transparent transparent transparent;
+        }
+
+        .tooltip-term:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Collapsible Elements */
+        .collapsible-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+        }
+
+        .collapsible-btn:hover {
+            background: #ffe0b2;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #fafafa;
+            border-radius: 0 0 8px 8px;
+            padding: 0 1rem;
+        }
+
+        .collapsible-content.open {
+            overflow: visible;
+        }
+
+        .collapsible-content p {
+            padding: 1rem 0;
+            margin: 0;
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+
+        /* FLIPBOOK CONTAINER FOR SCENARIOS ONLY */
+        .scenario-flipbook-container {
+            margin: 2rem 0 1.5rem;
+        }
+
+        .flipbook-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            border-left: 6px solid var(--secondary);
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .flip-page {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .flip-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .scenario-header h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+
+        .badge {
+            background: var(--secondary-light);
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .scenario-box {
+            background: var(--secondary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+            font-size: 0.98rem;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            margin: 0.5rem 0;
+            background: #fff;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            border-color: var(--secondary);
+            background: var(--secondary-light);
+        }
+
+        .feedback-box {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f1f8e9;
+            border: 1px solid #a5d6a7;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        /* Reflection Area */
+        .reflection-area {
+            margin-top: 1.25rem;
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px dashed #ccc;
+        }
+
+        .reflection-area label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .reflection-area textarea {
+            width: 100%;
+            height: 65px;
+            padding: 0.6rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            resize: none;
+            font-size: 0.9rem;
+            outline: none;
+            margin-top: 0.4rem;
+        }
+
+        .reflection-area textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        /* Flip Controls */
+        .scenario-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1.25rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #1b5e20;
+        }
+
+        .page-indicator {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Export Action Bar (Placed right after scenarios) */
+        .export-container {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .btn-export {
+            background: var(--secondary-light);
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 25px;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-export:hover {
+            background: var(--secondary);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        /* REDESIGNED PARADIGM SHIFT SECTION */
+        .paradigm-container {
+            margin-bottom: 4rem;
+        }
+
+        .paradigm-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .paradigm-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            position: relative;
+            overflow: visible;
+        }
+
+        .paradigm-side {
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .paradigm-old {
+            background: #ffebee;
+            border-left: 4px solid #e53935;
+        }
+
+        .paradigm-new {
+            background: var(--secondary-light);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .paradigm-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .paradigm-old .paradigm-label {
+            color: #c62828;
+        }
+
+        .paradigm-new .paradigm-label {
+            color: var(--secondary);
+        }
+
+        .paradigm-quote {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* DYNAMICALLY RENDERED PDF EXPORT TEMPLATE */
+        #pdf-export-container {
+            display: none;
+            padding: 2.5rem;
+            background: #ffffff;
+            color: #2c3e50;
+            width: 100%;
+        }
+
+        #pdf-export-container h1 {
+            color: #e65100;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #e65100;
+        }
+
+        #pdf-export-container .pdf-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        #pdf-export-container .pdf-section h3 {
+            color: #2e7d32;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+
+        #pdf-export-container .pdf-note {
+            background: #f9f9f9;
+            padding: 0.8rem 1rem;
+            border-left: 4px solid #2e7d32;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: #333;
+            margin-top: 0.4rem;
+            white-space: pre-wrap;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--bg-card);
+            border-top: 1px solid #eee;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .flipbook-card { padding: 1.25rem; }
+            .paradigm-card { grid-template-columns: 1fr; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WRAPPER FOR MAIN SITE -->
+    <div id="main-site-content">
+        <header>
+            <div class="logo">
+                <span>🌱</span> Mindful Parenting Guide
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- HERO SECTION -->
+            <section class="hero">
+                <h1>Connecting With Your Child Beyond Behavior</h1>
+                <p>An interactive, digestible guide covering all core parenting principles: emotional attunement, repairing relationship ruptures, and understanding the messages behind everyday actions.</p>
+            </section>
+
+            <!-- CORE PILLARS GRID -->
+            <h2 class="section-title">The 6 Core Foundations</h2>
+
+            <div class="grid">
+                <!-- Pillar 1 -->
+                <div class="card">
+                    <div>
+                        <h3>1. Your Parenting Legacy</h3>
+                        <p>Children do what we do, not what we say. Unpack your childhood triggers and inner critic so you don't project past wounds onto your child.</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">Practical Exercise <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>Reflective Pause:</strong> When your child triggers strong anger, ask: <em>"Does this feeling belong to the present situation, or am I reacting to what I felt at their age?"</em></p>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="card">
+                    <div>
+                        <h3>2. Your Child's Environment</h3>
+                        <p>Family structure matters less than how family members treat each other. Avoid 
+                            <span class="tooltip-term">Fact Tennis
+                                <span class="tooltip-text">A defensive style of arguing where partners lob logical arguments back and forth to 'win' rather than listening to underlying emotions.</span>
+                            </span> 
+                            and hostile arguments that threaten your child's safety.
+                        </p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">Communication Tip <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p>
+                            <strong>
+                                <span class="tooltip-term">I-Statements
+                                    <span class="tooltip-text">Expressing your own feelings ("I feel overwhelmed") instead of defining or blaming the other person ("You are annoying").</span>
+                                </span>:
+                            </strong> Use statements like <em>"I feel hurt when I am ignored"</em> instead of blaming with <em>"You always ignore me"</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="card">
+                    <div>
+                        <h3>3. Feelings & Containment</h3>
+                        <p>All feelings are valid; not all behaviors are acceptable. Be a calm container for your child's emotional distress rather than distracting or dismissing them.</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">Core Principle <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p>
+                            <strong>
+                                <span class="tooltip-term">Felt With, Not Dealt With
+                                    <span class="tooltip-text">Sitting alongside a child to empathize with their painful mood instead of rushing to 'fix' or dismiss them.</span>
+                                </span>:
+                            </strong> When a child is sad or angry, stay alongside them: <em>"It is hard when things don't go your way. I'm right here with you."</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="card">
+                    <div>
+                        <h3>4. Laying a Foundation</h3>
+                        <p>Parenting begins before birth. Secure attachment develops through attunement, responding to 
+                            <span class="tooltip-term">Coercive Cries
+                                <span class="tooltip-text">A baby's biologically programmed alarm cry that compels caregivers to respond to their essential needs.</span>
+                            </span>, 
+                            and respectful 
+                            <span class="tooltip-term">Sleep Nudging
+                                <span class="tooltip-text">Gradually encouraging independent sleep step-by-step from a child's comfort baseline rather than leaving them to cry alone.</span>
+                            </span>.
+                        </p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">Sleep Nudging <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>Gentle Separation:</strong> Move step-by-step from your child's comfort baseline rather than leaving them to cry alone in distress.</p>
+                    </div>
+                </div>
+
+                <!-- Pillar 5 -->
+                <div class="card">
+                    <div>
+                        <h3>5. Conditions for Good Mental Health</h3>
+                        <p>Mental health thrives on reciprocal, turn-taking dialogue. Avoid phone addiction, practice engaged observation, and allow uninterrupted play.</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">Turn-Taking Game <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>Leave a Space:</strong> Notice your child's cues and leave pauses in conversation or play so they can take their turn and influence you.</p>
+                    </div>
+                </div>
+
+                <!-- Pillar 6 -->
+                <div class="card">
+                    <div>
+                        <h3>6. Behavior is Communication</h3>
+                        <p>All inconvenient behavior is an unrefined signal. Define your own boundaries, engage in collaborative problem-solving, and handle lies with curiosity.</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">Define Yourself <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>Set Boundaries Clearly:</strong> Say <em>"I cannot allow you to jump on the sofa"</em> instead of judging with <em>"You are being bad"</em>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCENARIO EXERCISES FLIPBOOK SECTION ONLY -->
+            <h2 class="section-title">Interactive Scenario Simulator</h2>
+
+            <div class="scenario-flipbook-container">
+                <div class="flipbook-card">
+                    <div>
+                        <!-- Scenario Page 1 -->
+                        <div class="flip-page active" data-scenario="1">
+                            <div class="scenario-header">
+                                <h3>1. Childhood Triggers & Rupture Repair</h3>
+                                <span class="badge">Part 1</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>Situation:</strong> Your 6-year-old gets stuck on a climbing frame and shouts for help. You feel a sudden surge of intense rage, thinking they are being ridiculous and should get down themselves. You shout: "Get down this minute!" The child gets down and cries.
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(1, 'A')">A. Dismiss it: "Kids can be such a pain. They need to stop making a fuss over nothing."</button>
+                                <button class="option-btn" onclick="selectScenarioOption(1, 'B')">B. Reflect & Repair: "I reacted to my childhood trigger, not you. I felt helpless as a kid. I'm sorry."</button>
+                            </div>
+                            <div id="feedback-s1" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ Your Personal Reflection / Action Plan:</label>
+                                <textarea id="ref-1" placeholder="Write down what childhood triggers you noticed in yourself..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 2 -->
+                        <div class="flip-page" data-scenario="2">
+                            <div class="scenario-header">
+                                <h3>2. Household Arguments & "Fact Tennis"</h3>
+                                <span class="badge">Part 2</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>Situation:</strong> You come home exhausted and see a pile of dirty dishes left in the sink by your family. You feel unappreciated and annoyed.
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(2, 'A')">A. Fact Tennis: "Leaving dishes breeds bacteria and flies! It is unhygienic!"</button>
+                                <button class="option-btn" onclick="selectScenarioOption(2, 'B')">B. I-Statements: "I feel fed up coming home to dirty dishes after cleaning this morning. What would help me is if we washed as we went."</button>
+                            </div>
+                            <div id="feedback-s2" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ Your Personal Reflection / Action Plan:</label>
+                                <textarea id="ref-2" placeholder="How can you rephrase your recent household arguments using I-Statements?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 3 -->
+                        <div class="flip-page" data-scenario="3">
+                            <div class="scenario-header">
+                                <h3>3. Containing Feelings vs Distraction</h3>
+                                <span class="badge">Part 3</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>Situation:</strong> Your 7-year-old sighs on Sunday: "We NEVER go anywhere or do anything fun!" even though you visited a theme park last weekend.
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(3, 'A')">A. Distract: "Look out the window, a puppy! Let's play video games instead!"</button>
+                                <button class="option-btn" onclick="selectScenarioOption(3, 'B')">B. Validate & Contain: "You sound really bored and fed up right now. It feels like a quiet afternoon, doesn't it?"</button>
+                            </div>
+                            <div id="feedback-s3" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ Your Personal Reflection / Action Plan:</label>
+                                <textarea id="ref-3" placeholder="How do you usually react when your child expresses uncomfortable feelings?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 4 -->
+                        <div class="flip-page" data-scenario="4">
+                            <div class="scenario-header">
+                                <h3>4. Attachment & Sleep Nudging</h3>
+                                <span class="badge">Part 4</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>Situation:</strong> Your toddler struggles to sleep alone and cries whenever you leave the room.
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(4, 'A')">A. Sleep Training: Leave them to cry it out until they give up and stop calling for you.</button>
+                                <button class="option-btn" onclick="selectScenarioOption(4, 'B')">B. Sleep Nudging: Move step-by-step from their comfort baseline (e.g., cuddles -> sitting next to bed -> moving cot step-by-step).</button>
+                            </div>
+                            <div id="feedback-s4" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ Your Personal Reflection / Action Plan:</label>
+                                <textarea id="ref-4" placeholder="What small steps can you take from your child's present comfort baseline?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 5 -->
+                        <div class="flip-page" data-scenario="5">
+                            <div class="scenario-header">
+                                <h3>5. Reciprocal Dialogue & Focus</h3>
+                                <span class="badge">Part 5</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>Situation:</strong> You are checking emails on your phone. Your child pulls your sleeve to show you a drawing.
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(5, 'A')">A. Hand them a tablet with cartoons so you can have peace and quiet.</button>
+                                <button class="option-btn" onclick="selectScenarioOption(5, 'B')">B. Put the phone face down, engage in turn-taking observation: "Look at those bright colors you chose!"</button>
+                            </div>
+                            <div id="feedback-s5" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ Your Personal Reflection / Action Plan:</label>
+                                <textarea id="ref-5" placeholder="How can you create screen-free relational zones during daily interactions?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 6 -->
+                        <div class="flip-page" data-scenario="6">
+                            <div class="scenario-header">
+                                <h3>6. Behavior Signals & Boundaries</h3>
+                                <span class="badge">Part 6</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>Situation:</strong> You catch your 15-year-old in a lie: they went to a party with alcohol instead of studying at a friend's house.
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(6, 'A')">A. Severe Punishment: Ground them for a month and scream: "You are a liar and can't be trusted!"</button>
+                                <button class="option-btn" onclick="selectScenarioOption(6, 'B')">B. Define Yourself: "I am scared because alcohol puts you in danger before I feel you are ready. I need you home earlier while we rebuild trust."</button>
+                            </div>
+                            <div id="feedback-s6" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ Your Personal Reflection / Action Plan:</label>
+                                <textarea id="ref-6" placeholder="Write down your commitment to define yourself rather than labeling your child..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flip Controls Bar for Scenarios -->
+                    <div class="scenario-controls">
+                        <button class="nav-btn" id="prevScenarioBtn" onclick="changeScenario(-1)" disabled>← Previous Scenario</button>
+                        <span class="page-indicator" id="scenarioIndicator">Scenario 1 of 6</span>
+                        <button class="nav-btn" id="nextScenarioBtn" onclick="changeScenario(1)">Next Scenario →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPORT ACTION BUTTON (PLACED RIGHT AFTER SCENARIOS) -->
+            <div class="export-container">
+                <button class="btn-export" onclick="exportToPDF()">📄 Export Reflection Notes to PDF</button>
+            </div>
+
+            <!-- REDESIGNED PARADIGM SHIFT SECTION -->
+            <section class="paradigm-container">
+                <h2 class="section-title">Shift Your Communication Paradigm</h2>
+                
+                <div class="paradigm-list">
+                    <!-- Paradigm Pair 1 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">Control / Reaction</div>
+                            <div class="paradigm-quote">"Stop making a fuss over nothing!"</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">Connection / Relationship</div>
+                            <div class="paradigm-quote">"You are really upset right now. I am listening."</div>
+                        </div>
+                    </div>
+
+                    <!-- Paradigm Pair 2 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">Control / Reaction</div>
+                            <div class="paradigm-quote">"You are being so naughty and manipulative."</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">Connection / Relationship</div>
+                            <div class="paradigm-quote">"All behavior is communication. What are they feeling?"</div>
+                        </div>
+                    </div>
+
+                    <!-- Paradigm Pair 3 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">Control / Reaction</div>
+                            <div class="paradigm-quote">"You need to go to bed because I said so!"</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">Connection / Relationship</div>
+                            <div class="paradigm-quote">"I am exhausted and need quiet time to recharge."</div>
+                        </div>
+                    </div>
+
+                    <!-- Paradigm Pair 4 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">Control / Reaction</div>
+                            <div class="paradigm-quote">"Is the child winning the power struggle?"</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">Connection / Relationship</div>
+                            <div class="paradigm-quote">"We are on the same team solving a problem."</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            Developed by <a href="https://mindx.us/" target="_blank" rel="noopener">Mind X Associates</a>
+        </footer>
+    </div>
+
+    <!-- DYNAMICALLY INJECTED PDF SUMMARY -->
+    <div id="pdf-export-container">
+        <h1>Mindful Parenting Guide - Personal Reflections</h1>
+        <p style="margin-bottom: 1rem;"><strong>Export Date:</strong> <span id="pdf-date"></span></p>
+
+        <div class="pdf-section">
+            <h3>1. Childhood Triggers & Rupture Repair</h3>
+            <div class="pdf-note" id="pdf-ref-1">No notes recorded.</div>
+        </div>
+        <div class="pdf-section">
+            <h3>2. Household Arguments & "Fact Tennis"</h3>
+            <div class="pdf-note" id="pdf-ref-2">No notes recorded.</div>
+        </div>
+        <div class="pdf-section">
+            <h3>3. Containing Feelings vs Distraction</h3>
+            <div class="pdf-note" id="pdf-ref-3">No notes recorded.</div>
+        </div>
+        <div class="pdf-section">
+            <h3>4. Attachment & Sleep Nudging</h3>
+            <div class="pdf-note" id="pdf-ref-4">No notes recorded.</div>
+        </div>
+        <div class="pdf-section">
+            <h3>5. Reciprocal Dialogue & Focus</h3>
+            <div class="pdf-note" id="pdf-ref-5">No notes recorded.</div>
+        </div>
+        <div class="pdf-section">
+            <h3>6. Behavior Signals & Boundaries</h3>
+            <div class="pdf-note" id="pdf-ref-6">No notes recorded.</div>
+        </div>
+    </div>
+
+    <script>
+        let currentScenario = 1;
+        const totalScenarios = 6;
+
+        const feedbackData = {
+            1: {
+                A: "<strong>Missed Repair:</strong> Writing off rage as 'kids being a pain' ignores your triggers. The child carries the belief that you don't care or that their genuine fear is unacceptable.",
+                B: "<strong>Optimal Repair!</strong> You examine where the anger came from, take responsibility for your emotional time warp, and repair the rupture so the child feels safe."
+            },
+            2: {
+                A: "<strong>Fact Tennis:</strong> Lobbing logical reasons over the net creates a win/lose dynamic that increases hostility rather than goodwill.",
+                B: "<strong>Optimal Communication!</strong> You express your genuine feelings using I-statements without attacking or defining the other person."
+            },
+            3: {
+                A: "<strong>Distraction:</strong> Distraction tricks the brain away from difficult feelings, discouraging long-term emotional containment and concentration.",
+                B: "<strong>Optimal Containment!</strong> You address the emotional truth behind hyperbole. Feeling understood helps the mood pass naturally."
+            },
+            4: {
+                A: "<strong>Sleep Training Risks:</strong> Leaving children to cry alone eliminates their crying out for you by conditioning them to give up, but stress hormones remain high.",
+                B: "<strong>Optimal Gentle Separation!</strong> Moving step-by-step within their comfort baseline builds secure attachment and long-term sleep confidence."
+            },
+            5: {
+                A: "<strong>Screen Substitute:</strong> Replacing human connection with screens risks training the child to seek digital stimulation over real relational dialogue.",
+                B: "<strong>Optimal Reciprocity!</strong> Engaged observation tells the child 'you exist and you matter.' This reciprocal dialogue wires the brain for good mental health."
+            },
+            6: {
+                A: "<strong>Punitive Regime:</strong> Cracking down with heavy shame and labels ('liar') turns adolescents into more sophisticated liars to avoid getting caught.",
+                B: "<strong>Optimal Boundary!</strong> You define your own limits ('I am scared') rather than judging their character, keeping communication lines open while maintaining safety."
+            }
+        };
+
+        function toggleCollapsible(btn) {
+            const content = btn.nextElementSibling;
+            const spanIcon = btn.querySelector('span span');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                if (spanIcon) spanIcon.textContent = '+';
+                content.classList.remove('open');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                if (spanIcon) spanIcon.textContent = '-';
+                content.classList.add('open');
+            }
+        }
+
+        function updateScenarioDisplay() {
+            document.querySelectorAll('.flip-page').forEach(p => p.classList.remove('active'));
+            const activePage = document.querySelector(`.flip-page[data-scenario="${currentScenario}"]`);
+            if (activePage) activePage.classList.add('active');
+
+            document.getElementById('prevScenarioBtn').disabled = currentScenario === 1;
+            document.getElementById('nextScenarioBtn').disabled = currentScenario === totalScenarios;
+
+            document.getElementById('scenarioIndicator').textContent = `Scenario ${currentScenario} of ${totalScenarios}`;
+        }
+
+        function changeScenario(delta) {
+            currentScenario += delta;
+            if (currentScenario < 1) currentScenario = 1;
+            if (currentScenario > totalScenarios) currentScenario = totalScenarios;
+            updateScenarioDisplay();
+        }
+
+        function selectScenarioOption(scenarioNum, optionKey) {
+            const feedbackBox = document.getElementById(`feedback-s${scenarioNum}`);
+            feedbackBox.innerHTML = feedbackData[scenarioNum][optionKey];
+            feedbackBox.style.display = 'block';
+        }
+
+        function exportToPDF() {
+            // Populate dates and reflection notes
+            document.getElementById('pdf-date').textContent = new Date().toLocaleDateString();
+            for (let i = 1; i <= totalScenarios; i++) {
+                const val = document.getElementById(`ref-${i}`).value;
+                document.getElementById(`pdf-ref-${i}`).textContent = val.trim() !== '' ? val : 'No notes recorded.';
+            }
+
+            const pdfContainer = document.getElementById('pdf-export-container');
+            const mainSite = document.getElementById('main-site-content');
+
+            // Temporarily hide main site and make PDF container visible in flow
+            mainSite.style.display = 'none';
+            pdfContainer.style.display = 'block';
+
+            const opt = {
+                margin:       [0.5, 0.5, 0.5, 0.5],
+                filename:     'Mindful_Parenting_Reflections.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(pdfContainer).save().then(() => {
+                // Restore original site display
+                pdfContainer.style.display = 'none';
+                mainSite.style.display = 'block';
+            }).catch(err => {
+                pdfContainer.style.display = 'none';
+                mainSite.style.display = 'block';
+                console.error("PDF generation failed:", err);
+            });
+        }
+    </script>
+</body>
+</html>
