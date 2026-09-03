@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正念育儿与情感沟通互动指南</title>
+    <!-- html2pdf.js for Client-Side PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary: #e65100;
+            --primary-light: #fff3e0;
+            --secondary: #2e7d32;
+            --secondary-light: #e8f5e9;
+            --bg-main: #fcfbf9;
+            --bg-card: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #607d8b;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* Top Header */
+        header {
+            background: var(--bg-card);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 3.5rem 1.5rem 2rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        /* Section Cards & Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            overflow: visible;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .card:hover, .card:focus-within {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            z-index: 500;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Interactive Hover Tooltips */
+        .tooltip-term {
+            position: relative;
+            cursor: help;
+            border-bottom: 2px dotted var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .tooltip-term .tooltip-text {
+            visibility: hidden;
+            width: 270px;
+            background-color: #222;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            position: absolute;
+            z-index: 9999;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            font-size: 0.85rem;
+            font-weight: 400;
+            line-height: 1.45;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+
+        .tooltip-term .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #222 transparent transparent transparent;
+        }
+
+        .tooltip-term:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Collapsible Elements */
+        .collapsible-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+        }
+
+        .collapsible-btn:hover {
+            background: #ffe0b2;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #fafafa;
+            border-radius: 0 0 8px 8px;
+            padding: 0 1rem;
+        }
+
+        .collapsible-content.open {
+            overflow: visible;
+        }
+
+        .collapsible-content p {
+            padding: 1rem 0;
+            margin: 0;
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+
+        /* FLIPBOOK CONTAINER FOR SCENARIOS ONLY */
+        .scenario-flipbook-container {
+            margin: 2rem 0 1.5rem;
+        }
+
+        .flipbook-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            border-left: 6px solid var(--secondary);
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .flip-page {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .flip-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .scenario-header h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+
+        .badge {
+            background: var(--secondary-light);
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .scenario-box {
+            background: var(--secondary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+            font-size: 0.98rem;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            margin: 0.5rem 0;
+            background: #fff;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            border-color: var(--secondary);
+            background: var(--secondary-light);
+        }
+
+        .feedback-box {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f1f8e9;
+            border: 1px solid #a5d6a7;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        /* Reflection Area */
+        .reflection-area {
+            margin-top: 1.25rem;
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px dashed #ccc;
+        }
+
+        .reflection-area label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .reflection-area textarea {
+            width: 100%;
+            height: 65px;
+            padding: 0.6rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            resize: none;
+            font-size: 0.9rem;
+            outline: none;
+            margin-top: 0.4rem;
+        }
+
+        .reflection-area textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        /* Flip Controls */
+        .scenario-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1.25rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #1b5e20;
+        }
+
+        .page-indicator {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Export Action Bar (Placed right after scenarios) */
+        .export-container {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .btn-export {
+            background: var(--secondary-light);
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 25px;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-export:hover {
+            background: var(--secondary);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        /* REDESIGNED PARADIGM SHIFT SECTION */
+        .paradigm-container {
+            margin-bottom: 4rem;
+        }
+
+        .paradigm-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .paradigm-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            position: relative;
+            overflow: visible;
+        }
+
+        .paradigm-side {
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .paradigm-old {
+            background: #ffebee;
+            border-left: 4px solid #e53935;
+        }
+
+        .paradigm-new {
+            background: var(--secondary-light);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .paradigm-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .paradigm-old .paradigm-label {
+            color: #c62828;
+        }
+
+        .paradigm-new .paradigm-label {
+            color: var(--secondary);
+        }
+
+        .paradigm-quote {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* DYNAMICALLY RENDERED PDF EXPORT TEMPLATE */
+        #pdf-export-container {
+            display: none;
+            padding: 2.5rem;
+            background: #ffffff;
+            color: #2c3e50;
+            width: 100%;
+        }
+
+        #pdf-export-container h1 {
+            color: #e65100;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #e65100;
+        }
+
+        #pdf-export-container .pdf-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        #pdf-export-container .pdf-section h3 {
+            color: #2e7d32;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+
+        #pdf-export-container .pdf-note {
+            background: #f9f9f9;
+            padding: 0.8rem 1rem;
+            border-left: 4px solid #2e7d32;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: #333;
+            margin-top: 0.4rem;
+            white-space: pre-wrap;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--bg-card);
+            border-top: 1px solid #eee;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .flipbook-card { padding: 1.25rem; }
+            .paradigm-card { grid-template-columns: 1fr; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WRAPPER FOR MAIN SITE -->
+    <div id="main-site-content">
+        <header>
+            <div class="logo">
+                <span>🌱</span> 正念育儿指南
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- HERO SECTION -->
+            <section class="hero">
+                <h1>超越行为本身，建立真挚的亲子连结</h1>
+                <p>一份包含所有核心育儿原则的互动指南：学习情绪共鸣、修复关系裂痕，读懂日常行为背后的沟通信号。</p>
+            </section>
+
+            <!-- CORE PILLARS GRID -->
+            <h2 class="section-title">六大核心育儿基石</h2>
+
+            <div class="grid">
+                <!-- Pillar 1 -->
+                <div class="card">
+                    <div>
+                        <h3>1. 亲子教养的传承</h3>
+                        <p>言传不如身教。觉察并拆解你自己童年的情感创伤与自我批判的声音，避免将过去的阴影无意间投射到孩子身上。</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">实用练习 <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>自我反思：</strong> 当孩子激起你的强烈怒火时，停下来自问：<em>“这种愤怒完全是源于眼前的事，还是唤醒了我小时候在类似年纪时的受挫感受？”</em></p>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="card">
+                    <div>
+                        <h3>2. 孩子的成长环境</h3>
+                        <p>重点不是家庭结构，而是成员之间如何相处。避免进行你来我往的
+                            <span class="tooltip-term">事实网球
+                                <span class="tooltip-text">一种防御性的争论模式，双方不断抛出理性依据试图证明自己是对的，而非倾听彼此的情感需求。</span>
+                            </span>
+                            式争论与敌意拉扯，以免破坏孩子的安全感。
+                        </p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">沟通技巧 <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p>
+                            <strong>使用
+                                <span class="tooltip-term">我陈述句
+                                    <span class="tooltip-text">表达你自己的真实感受（如“我觉得很累”），而不是去定义或责备对方（如“你太烦人了”）。</span>
+                                </span>：
+                            </strong> 使用<em>“当我被忽略时我觉得很难过”</em>，而不是责备式的<em>“你总是无视我”</em>。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="card">
+                    <div>
+                        <h3>3. 回应与包容感受</h3>
+                        <p>所有的情绪都是被允许的，尽管并非所有的行为都合适。成为包容孩子情绪困扰的平静容器，而不是立刻转移注意力或否定情绪。</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">核心原则 <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p>
+                            <strong>
+                                <span class="tooltip-term">去感受，而不是去处理
+                                    <span class="tooltip-text">陪在孩子身边理解并包容他的痛苦情绪，而不是急着去纠正、解决或赶走情绪。</span>
+                                </span>：
+                            </strong> 当孩子伤心或生气时，陪在他身边：<em>“事情没有按你的预期进行确实很难过，我会一直陪着你。”</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="card">
+                    <div>
+                        <h3>4. 最初的孕育与依附</h3>
+                        <p>亲子关系从孕育开始。安全型依附关系是通过关注孩子的信号、回应
+                            <span class="tooltip-term">强迫性哭喊
+                                <span class="tooltip-text">婴儿天生的警报哭声，促使照顾者对其最基本的生理与心理需求做出回应。</span>
+                            </span>
+                            以及循序渐进的
+                            <span class="tooltip-term">睡眠逐步推进
+                                <span class="tooltip-text">从孩子的“舒适基线”出发，一步步鼓励独立入睡，而不是放任孩子独自在绝望中哭泣。</span>
+                            </span>
+                            建立起来的。
+                        </p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">睡眠逐步推进 <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>温和分离：</strong> 从孩子的“舒适基线”出发，一步步渐进推开，而不是放任孩子独自在绝望中哭泣。</p>
+                    </div>
+                </div>
+
+                <!-- Pillar 5 -->
+                <div class="card">
+                    <div>
+                        <h3>5. 培养心理健康的孩子</h3>
+                        <p>良好的心理健康建立在双向的来回互动与交流上。避免对手机沉迷，保持专注观察，并保护孩子专注游戏的能力。</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">互动来回游戏 <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>留出互动空间：</strong> 关注孩子的信号，在对话或游戏中留出停顿，让孩子有机会做出回应并对你产生影响。</p>
+                    </div>
+                </div>
+
+                <!-- Pillar 6 -->
+                <div class="card">
+                    <div>
+                        <h3>6. 所有的行为都是沟通</h3>
+                        <p>所有“不得体”的行为都是未说出口的情感信号。界定你自己而非孩子，进行合作型问题解决，并用好奇心对待孩子的谎言。</p>
+                    </div>
+                    <button class="collapsible-btn" onclick="toggleCollapsible(this)">界定你自己 <span>+</span></button>
+                    <div class="collapsible-content">
+                        <p><strong>明确界定底线：</strong> 说<em>“我不能让你在沙发上跳”</em>，而不是评判<em>“你太不听话了”</em>。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCENARIO EXERCISES FLIPBOOK SECTION ONLY -->
+            <h2 class="section-title">多情境翻页互动模拟</h2>
+
+            <div class="scenario-flipbook-container">
+                <div class="flipbook-card">
+                    <div>
+                        <!-- Scenario Page 1 -->
+                        <div class="flip-page active" data-scenario="1">
+                            <div class="scenario-header">
+                                <h3>1. 过往经历的引发与破裂修复</h3>
+                                <span class="badge">第一部分</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>情境：</strong> 你6岁的孩子卡在攀爬架上喊着让你抱他下来。你突然冒出一股无名火，觉得他明明可以自己下来，却在无理取闹，于是你对他大喊：“马上给我下来！”孩子委屈地哭着下来。
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(1, 'A')">A. 不去理会：“带孩子可真麻烦，这点小事也大惊小怪。”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(1, 'B')">B. 反思并修复：“妈妈/爸爸发火是因为我小时候无人帮助。我是对过去生气，而不是对你，对不起。”</button>
+                            </div>
+                            <div id="feedback-s1" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ 你的个人反思与感悟：</label>
+                                <textarea id="ref-1" placeholder="写下你察觉到的个人情绪触发点..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 2 -->
+                        <div class="flip-page" data-scenario="2">
+                            <div class="scenario-header">
+                                <h3>2. 家庭冲突与“事实网球”</h3>
+                                <span class="badge">第二部分</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>情境：</strong> 你拖着疲惫的身躯回到家，看到水槽里堆满了家人没洗的脏碗盘，心里感到非常烦躁与受挫。
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(2, 'A')">A. 事实网球：“脏碗盘放着会滋生细菌！这太不卫生了！”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(2, 'B')">B. 我陈述句：“我早上刚清理完，回家又看到堆着脏碗盘，心里觉得很烦。如果你随手洗掉，我会舒服很多。”</button>
+                            </div>
+                            <div id="feedback-s2" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ 你的个人反思与感悟：</label>
+                                <textarea id="ref-2" placeholder="如何用‘我陈述句’重新表达你最近的家庭分歧？"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 3 -->
+                        <div class="flip-page" data-scenario="3">
+                            <div class="scenario-header">
+                                <h3>3. 包容感受与转移注意力</h3>
+                                <span class="badge">第三部分</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>情境：</strong> 7岁的孩子在周日下午深深叹气：“我们‘从来’都不出去玩，一点意思也没有！”哪怕你上周末才带他去过主题乐园。
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(3, 'A')">A. 转移注意力：“快看窗外有一只小狗！走，我们去玩游戏机吧！”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(3, 'B')">B. 确认与包容：“你现在看起来真的觉得很无聊、很闷。今天下午确实有点漫长无趣，对吧？”</button>
+                            </div>
+                            <div id="feedback-s3" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ 你的个人反思与感悟：</label>
+                                <textarea id="ref-3" placeholder="当孩子表达令人不爽的情绪时，你通常如何反应？"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 4 -->
+                        <div class="flip-page" data-scenario="4">
+                            <div class="scenario-header">
+                                <h3>4. 依附关系与睡眠逐步推进</h3>
+                                <span class="badge">第四部分</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>情境：</strong> 刚学会走路的孩子很难独自入睡，只要你离开房间他就大哭。
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(4, 'A')">A. 睡眠训练：任由他哭泣，直到他放弃不再呼唤你。</button>
+                                <button class="option-btn" onclick="selectScenarioOption(4, 'B')">B. 逐步推进：从孩子的“舒适基线”出发（如：拥抱 -> 坐在床边 -> 逐渐移开距离）。</button>
+                            </div>
+                            <div id="feedback-s4" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ 你的个人反思与感悟：</label>
+                                <textarea id="ref-4" placeholder="你可以从孩子的当前舒适基线采取哪些小步骤？"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 5 -->
+                        <div class="flip-page" data-scenario="5">
+                            <div class="scenario-header">
+                                <h3>5. 双向互动与手机沉迷</h3>
+                                <span class="badge">第五部分</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>情境：</strong> 你正在手机上处理邮件。孩子拉你的袖子，想让你看他的画。
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(5, 'A')">A. 给他们一个播放动画片的平板电脑，好让大家都“安静一下”。</button>
+                                <button class="option-btn" onclick="selectScenarioOption(5, 'B')">B. 把手机扣下，进行专注的观察与来回互动：“看看你用的这些鲜艳的颜色！”</button>
+                            </div>
+                            <div id="feedback-s5" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ 你的个人反思与感悟：</label>
+                                <textarea id="ref-5" placeholder="如何在日常互动中营造无屏幕的亲密交流时光？"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Page 6 -->
+                        <div class="flip-page" data-scenario="6">
+                            <div class="scenario-header">
+                                <h3>6. 行为信号与界限设定</h3>
+                                <span class="badge">第六部分</span>
+                            </div>
+                            <div class="scenario-box">
+                                <strong>情境：</strong> 你发现15岁的孩子撒了谎：他说去朋友家做功课，实际上是去参加了一个有酒的聚会。
+                            </div>
+                            <div class="options-group">
+                                <button class="option-btn" onclick="selectScenarioOption(6, 'A')">A. 严厉惩罚：关禁闭一个月并大吼：“你这个骗子，再也别想让我相信你！”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(6, 'B')">B. 界定你自己：“我很害怕，因为酒精会让你置身险境，而我觉得你还没准备好。在重新建立信任之前，我需要你早点回家。”</button>
+                            </div>
+                            <div id="feedback-s6" class="feedback-box"></div>
+                            <div class="reflection-area">
+                                <label>✍️ 你的个人反思与感悟：</label>
+                                <textarea id="ref-6" placeholder="写下你坚持‘界定自己而非贴标签’的决心..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flip Controls Bar for Scenarios -->
+                    <div class="scenario-controls">
+                        <button class="nav-btn" id="prevScenarioBtn" onclick="changeScenario(-1)" disabled>← 上一个情境</button>
+                        <span class="page-indicator" id="scenarioIndicator">情境 1 / 共 6</span>
+                        <button class="nav-btn" id="nextScenarioBtn" onclick="changeScenario(1)">下一个情境 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPORT ACTION BUTTON (PLACED RIGHT AFTER SCENARIOS) -->
+            <div class="export-container">
+                <button class="btn-export" onclick="exportToPDF()">📄 导出个人心得至 PDF</button>
+            </div>
+
+            <!-- REDESIGNED PARADIGM SHIFT SECTION -->
+            <section class="paradigm-container">
+                <h2 class="section-title">沟通范式的根本转变</h2>
+                
+                <div class="paradigm-list">
+                    <!-- Paradigm Pair 1 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">习惯性控制 / 反应式</div>
+                            <div class="paradigm-quote">“这点小事至于大惊小怪吗！”</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">基于连结 / 倾听关系</div>
+                            <div class="paradigm-quote">“你现在心里真的很受挫，我陪着你。”</div>
+                        </div>
+                    </div>
+
+                    <!-- Paradigm Pair 2 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">习惯性控制 / 反应式</div>
+                            <div class="paradigm-quote">“这孩子真是太不听话/耍心机了。”</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">基于连结 / 倾听关系</div>
+                            <div class="paradigm-quote">“行为就是信号。他此刻面临什么困难？”</div>
+                        </div>
+                    </div>
+
+                    <!-- Paradigm Pair 3 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">习惯性控制 / 反应式</div>
+                            <div class="paradigm-quote">“我让你去睡觉你就必须去！”</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">基于连结 / 倾听关系</div>
+                            <div class="paradigm-quote">“我现在很累了，需要一些安静的时间休息。”</div>
+                        </div>
+                    </div>
+
+                    <!-- Paradigm Pair 4 -->
+                    <div class="paradigm-card">
+                        <div class="paradigm-side paradigm-old">
+                            <div class="paradigm-label">习惯性控制 / 反应式</div>
+                            <div class="paradigm-quote">“在这场较量里是不是孩子占了上风？”</div>
+                        </div>
+                        <div class="paradigm-side paradigm-new">
+                            <div class="paradigm-label">基于连结 / 倾听关系</div>
+                            <div class="paradigm-quote">“我们站在同一战线，共同解决眼前的问题。”</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            由 <a href="https://mindx.us/zh/" target="_blank" rel="noopener">Mind X 社区</a> 开发
+        </footer>
+    </div>
+
+    <!-- DYNAMICALLY INJECTED PDF SUMMARY -->
+    <div id="pdf-export-container">
+        <h1>正念育儿指南 - 个人心得总结</h1>
+        <p style="margin-bottom: 1rem;"><strong>导出日期：</strong> <span id="pdf-date"></span></p>
+
+        <div class="pdf-section">
+            <h3>1. 过往经历的引发与破裂修复</h3>
+            <div class="pdf-note" id="pdf-ref-1">无心得记录。</div>
+        </div>
+        <div class="pdf-section">
+            <h3>2. 家庭冲突与“事实网球”</h3>
+            <div class="pdf-note" id="pdf-ref-2">无心得记录。</div>
+        </div>
+        <div class="pdf-section">
+            <h3>3. 包容感受与转移注意力</h3>
+            <div class="pdf-note" id="pdf-ref-3">无心得记录。</div>
+        </div>
+        <div class="pdf-section">
+            <h3>4. 依附关系与睡眠逐步推进</h3>
+            <div class="pdf-note" id="pdf-ref-4">无心得记录。</div>
+        </div>
+        <div class="pdf-section">
+            <h3>5. 双向互动与手机沉迷</h3>
+            <div class="pdf-note" id="pdf-ref-5">无心得记录。</div>
+        </div>
+        <div class="pdf-section">
+            <h3>6. 行为信号与界限设定</h3>
+            <div class="pdf-note" id="pdf-ref-6">无心得记录。</div>
+        </div>
+    </div>
+
+    <script>
+        let currentScenario = 1;
+        const totalScenarios = 6;
+
+        const feedbackData = {
+            1: {
+                A: "<strong>错失修复良机：</strong> 把怒火归咎于‘孩子太麻烦’忽视了自己的内在触发点。孩子可能会误以为你不关心他，或者以为他表达求助是错的。",
+                B: "<strong>最佳修复策略！</strong> 你反思了怒火的源头，为自己的情绪错位承担了责任，并修复了关系裂痕，让孩子重获安全感。"
+            },
+            2: {
+                A: "<strong>事实网球：</strong> 抛出理性的理由只能制造‘胜负对立’，增加家人的敌意而不是善意。",
+                B: "<strong>最佳沟通！</strong> 你用‘我陈述句’表达了真实的感受，而没有去攻击或指责对方，引发的是合作而不是防御。"
+            },
+            3: {
+                A: "<strong>转移注意力：</strong> 用把戏转移注意力虽然省事，但无法帮孩子学会排解和包容复杂情绪，也有损专注力。",
+                B: "<strong>最佳包容！</strong> 你读懂了夸张言语背后的真实情感。被理解的感觉能让低落情绪自然平复。"
+            },
+            4: {
+                A: "<strong>睡眠训练风险：</strong> 让孩子独自哭泣只是迫使他放弃呼唤，但体内的压力荷尔蒙依然很高。",
+                B: "<strong>最佳温和分离！</strong> 从舒适基线一步步渐进推开，能建立安全依附关系与长期的睡眠信心。"
+            },
+            5: {
+                A: "<strong>电子屏幕替代：</strong> 用屏幕取代真实的人际接触，容易让孩子习惯数字刺激，而丧失真实交流的能力。",
+                B: "<strong>最佳双向互动！</strong> 专注的观察告诉孩子‘你很重要’。这种有来有往的对话是心理健康的基石。"
+            },
+            6: {
+                A: "<strong>严酷惩罚：</strong> 贴标签（‘骗子’）与羞辱不会让孩子更诚实，只会把他们训练成更高明的撒谎者。",
+                B: "<strong>最佳界限！</strong> 你表达的是你自己的感受与底线（‘我很害怕’），而不是评判孩子的人格，在保障安全的同时保持沟通畅通。"
+            }
+        };
+
+        function toggleCollapsible(btn) {
+            const content = btn.nextElementSibling;
+            const spanIcon = btn.querySelector('span span');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                if (spanIcon) spanIcon.textContent = '+';
+                content.classList.remove('open');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                if (spanIcon) spanIcon.textContent = '-';
+                content.classList.add('open');
+            }
+        }
+
+        function updateScenarioDisplay() {
+            document.querySelectorAll('.flip-page').forEach(p => p.classList.remove('active'));
+            const activePage = document.querySelector(`.flip-page[data-scenario="${currentScenario}"]`);
+            if (activePage) activePage.classList.add('active');
+
+            document.getElementById('prevScenarioBtn').disabled = currentScenario === 1;
+            document.getElementById('nextScenarioBtn').disabled = currentScenario === totalScenarios;
+
+            document.getElementById('scenarioIndicator').textContent = `情境 ${currentScenario} / 共 ${totalScenarios}`;
+        }
+
+        function changeScenario(delta) {
+            currentScenario += delta;
+            if (currentScenario < 1) currentScenario = 1;
+            if (currentScenario > totalScenarios) currentScenario = totalScenarios;
+            updateScenarioDisplay();
+        }
+
+        function selectScenarioOption(scenarioNum, optionKey) {
+            const feedbackBox = document.getElementById(`feedback-s${scenarioNum}`);
+            feedbackBox.innerHTML = feedbackData[scenarioNum][optionKey];
+            feedbackBox.style.display = 'block';
+        }
+
+        function exportToPDF() {
+            // Populate dates and reflection notes
+            document.getElementById('pdf-date').textContent = new Date().toLocaleDateString();
+            for (let i = 1; i <= totalScenarios; i++) {
+                const val = document.getElementById(`ref-${i}`).value;
+                document.getElementById(`pdf-ref-${i}`).textContent = val.trim() !== '' ? val : '无心得记录。';
+            }
+
+            const pdfContainer = document.getElementById('pdf-export-container');
+            const mainSite = document.getElementById('main-site-content');
+
+            // Temporarily hide main site and make PDF container visible in flow
+            mainSite.style.display = 'none';
+            pdfContainer.style.display = 'block';
+
+            const opt = {
+                margin:       [0.5, 0.5, 0.5, 0.5],
+                filename:     'Mindful_Parenting_Reflections.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(pdfContainer).save().then(() => {
+                // Restore original site display
+                pdfContainer.style.display = 'none';
+                mainSite.style.display = 'block';
+            }).catch(err => {
+                pdfContainer.style.display = 'none';
+                mainSite.style.display = 'block';
+                console.error("PDF generation failed:", err);
+            });
+        }
+    </script>
+</body>
+</html>
