@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Mindful Parenting Guide</title>
-    <!-- html2pdf.js for Client-Side PDF Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --primary: #e65100;
@@ -541,6 +539,23 @@
             .flipbook-card { padding: 1.25rem; }
             .paradigm-card { grid-template-columns: 1fr; gap: 1rem; }
         }
+
+        /* 2026 experience refresh */
+        :root { --primary:#2d6a5a; --primary-light:#eaf4ef; --secondary:#c56b3d; --secondary-light:#fff1e8; --bg-main:#f8f5ef; --text-main:#18352f; --text-muted:#60736e; --shadow:0 16px 45px rgba(31,72,61,.10); --radius:22px; }
+        body{background:radial-gradient(circle at 15% 0,#edf6ef 0,transparent 32rem),var(--bg-main)}
+        header{background:rgba(255,253,249,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(45,106,90,.12);box-shadow:none}
+        .header-actions{display:flex;gap:.55rem;align-items:center}.header-btn{border:1px solid #ceddd7;background:#fff;color:var(--text-main);border-radius:999px;padding:.55rem .85rem;font-weight:700;cursor:pointer;text-decoration:none}.header-btn:hover{background:var(--primary-light)}
+        .hero{max-width:1040px;text-align:left;padding:5rem 0 3rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:center}.hero h1{font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.055em;line-height:1.01}.hero p{max-width:650px}.hero-visual{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#fff 0 15%,#f4c77d 16% 29%,#f0d8cf 30% 47%,#b9d8ca 48% 65%,#e9f4ee 66%);box-shadow:var(--shadow);font-weight:800;text-align:center;padding:25%;color:var(--text-main)}
+        .progress-panel{background:#fff;border:1px solid #dbe7e2;border-radius:18px;padding:1rem 1.2rem;margin-bottom:2.3rem;box-shadow:var(--shadow)}.progress-row{display:flex;justify-content:space-between;font-weight:700}.progress-track{height:10px;background:#e8eeeb;border-radius:99px;overflow:hidden;margin-top:.65rem}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#efb462);transition:width .35s ease}
+        .reset-tool{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;background:#173b33;color:#fff;border-radius:28px;padding:1.5rem 2rem;margin-bottom:3rem;box-shadow:var(--shadow)}.breathing-orb{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#d8f6e8,#4d9a7e 48%,#286553);box-shadow:0 0 0 12px rgba(186,222,207,.15);font-weight:800;transition:transform 4s ease-in-out}.breathing-orb.expand{transform:scale(1.25)}.reset-tool p{color:#d6e7e1;margin:.25rem 0 .8rem}.reset-tool button{border:0;border-radius:999px;background:#fff;color:#173b33;padding:.65rem 1rem;font-weight:800}
+        .card{border-top:0;border:1px solid #dbe7e2}.card:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(var(--primary),#efb462);border-radius:var(--radius) 0 0 var(--radius)}.card h3{color:var(--primary)}
+        .option-btn{transition:.2s ease}.option-btn.selected{outline:3px solid rgba(45,106,90,.25);background:var(--primary-light);border-color:var(--primary);transform:translateX(4px)}.option-btn.correct{background:#e4f3ea;border-color:#2e7d52}.option-btn.incorrect{background:#fff0ed;border-color:#c45b4c}
+        .save-status{font-size:.82rem;color:var(--secondary);font-weight:700;margin-top:.45rem;min-height:1.2em}.scenario-flipbook-container{scroll-margin-top:90px}.section-title{letter-spacing:-.035em}.paradigm-card{border:1px solid #dbe7e2;box-shadow:none}.btn-export{background:var(--primary)}
+        .quick-nav{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1000;display:flex;gap:.35rem;padding:.4rem;background:rgba(24,53,47,.92);backdrop-filter:blur(12px);border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.22)}.quick-nav a{color:#fff;text-decoration:none;font-size:.82rem;padding:.45rem .7rem;border-radius:999px;white-space:nowrap}.quick-nav a:hover{background:rgba(255,255,255,.16)}
+        .toast{position:fixed;right:1rem;top:5rem;background:#173b33;color:#fff;padding:.75rem 1rem;border-radius:12px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:.2s;z-index:2000}.toast.show{opacity:1;transform:none}
+        @media(max-width:768px){header{padding:.8rem 1rem}.logo{font-size:1rem}.header-actions .header-btn:first-child{display:none}.hero{grid-template-columns:1fr;padding:3.5rem 0 2rem}.hero-visual{max-width:260px;margin:auto}.reset-tool{grid-template-columns:1fr;text-align:center}.breathing-orb{margin:auto}.quick-nav{max-width:calc(100% - 20px);overflow:auto;justify-content:flex-start}.quick-nav a{font-size:.75rem}.container{padding:0 1rem}}
+        @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.breathing-orb{transform:none!important}}
+        @media print{header,.quick-nav,.reset-tool,.export-container,.scenario-controls,.options-group,.toast{display:none!important}body{background:#fff;padding:0}.card,.flipbook-card,.paradigm-card{box-shadow:none;break-inside:avoid}.flip-page{display:block!important;page-break-inside:avoid}.hero{display:block;padding:1rem 0}.hero-visual{display:none}.reflection-area textarea{border:0;min-height:70px}.feedback-box{display:block!important}}
     </style>
 </head>
 <body>
@@ -551,17 +566,21 @@
             <div class="logo">
                 <span>🌱</span> Mindful Parenting Guide
             </div>
+            <div class="header-actions"><button class="header-btn" onclick="window.print()">Print / Save PDF</button><a class="header-btn" href="zh/index.html">中文</a></div>
         </header>
 
         <main class="container">
             <!-- HERO SECTION -->
             <section class="hero">
-                <h1>Connecting With Your Child Beyond Behavior</h1>
-                <p>An interactive, digestible guide covering all core parenting principles: emotional attunement, repairing relationship ruptures, and understanding the messages behind everyday actions.</p>
+                <div><div style="color:var(--primary);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem">A practical relationship guide</div><h1>Connect first.<br>Guide second.</h1>
+                <p>An interactive, digestible guide to emotional attunement, relationship repair, and understanding the messages beneath everyday behavior.</p></div><div class="hero-visual">Safety → Connection → Growth</div>
             </section>
 
+            <div class="progress-panel"><div class="progress-row"><span>Your practice progress</span><span id="progressLabel">0 of 6</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
+            <section class="reset-tool"><div class="breathing-orb" id="breathingOrb">Ready?</div><div><h2>A 60-second reset before you respond</h2><p id="breathingCue">Put both feet down. Let your shoulders soften.</p><button id="breathingBtn" onclick="startBreathingReset()">Begin guided breathing</button></div></section>
+
             <!-- CORE PILLARS GRID -->
-            <h2 class="section-title">The 6 Core Foundations</h2>
+            <h2 class="section-title" id="core-foundations">The 6 Core Foundations</h2>
 
             <div class="grid">
                 <!-- Pillar 1 -->
@@ -663,7 +682,7 @@
             </div>
 
             <!-- SCENARIO EXERCISES FLIPBOOK SECTION ONLY -->
-            <h2 class="section-title">Interactive Scenario Simulator</h2>
+            <h2 class="section-title" id="scenarios">Interactive Scenario Simulator</h2>
 
             <div class="scenario-flipbook-container">
                 <div class="flipbook-card">
@@ -800,12 +819,12 @@
 
             <!-- EXPORT ACTION BUTTON (PLACED RIGHT AFTER SCENARIOS) -->
             <div class="export-container">
-                <button class="btn-export" onclick="exportToPDF()">📄 Export Reflection Notes to PDF</button>
+                <button class="btn-export" onclick="exportToPDF()">📄 Print / Save Reflections as PDF</button>
             </div>
 
             <!-- REDESIGNED PARADIGM SHIFT SECTION -->
             <section class="paradigm-container">
-                <h2 class="section-title">Shift Your Communication Paradigm</h2>
+                <h2 class="section-title" id="shifts">Shift Your Communication Paradigm</h2>
                 
                 <div class="paradigm-list">
                     <!-- Paradigm Pair 1 -->
@@ -864,6 +883,7 @@
             Developed by <a href="https://mindx.us/" target="_blank" rel="noopener">Mind X Associates</a>
         </footer>
     </div>
+    <nav class="quick-nav" aria-label="Quick navigation"><a href="#main-site-content">Top</a><a href="#core-foundations">Foundations</a><a href="#scenarios">Scenarios</a><a href="#shifts">Language shifts</a></nav><div class="toast" id="toast">Saved on this device</div>
 
     <!-- DYNAMICALLY INJECTED PDF SUMMARY -->
     <div id="pdf-export-container">
@@ -929,7 +949,7 @@
 
         function toggleCollapsible(btn) {
             const content = btn.nextElementSibling;
-            const spanIcon = btn.querySelector('span span');
+            const spanIcon = btn.querySelector('span');
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
                 if (spanIcon) spanIcon.textContent = '+';
@@ -963,6 +983,13 @@
             const feedbackBox = document.getElementById(`feedback-s${scenarioNum}`);
             feedbackBox.innerHTML = feedbackData[scenarioNum][optionKey];
             feedbackBox.style.display = 'block';
+            const page = document.querySelector(`.flip-page[data-scenario="${scenarioNum}"]`);
+            page.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected','correct','incorrect');
+                if ((index === 0 ? 'A' : 'B') === optionKey) btn.classList.add('selected', optionKey === 'B' ? 'correct' : 'incorrect');
+            });
+            localStorage.setItem(`mpg-en-answer-${scenarioNum}`, optionKey);
+            updateProgress();
         }
 
         function exportToPDF() {
@@ -980,24 +1007,23 @@
             mainSite.style.display = 'none';
             pdfContainer.style.display = 'block';
 
-            const opt = {
-                margin:       [0.5, 0.5, 0.5, 0.5],
-                filename:     'Mindful_Parenting_Reflections.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(pdfContainer).save().then(() => {
-                // Restore original site display
-                pdfContainer.style.display = 'none';
-                mainSite.style.display = 'block';
-            }).catch(err => {
-                pdfContainer.style.display = 'none';
-                mainSite.style.display = 'block';
-                console.error("PDF generation failed:", err);
-            });
+            window.print();
+            setTimeout(() => { pdfContainer.style.display = 'none'; mainSite.style.display = 'block'; }, 500);
         }
+
+        function updateProgress(){
+            let done=0; for(let i=1;i<=totalScenarios;i++) if(localStorage.getItem(`mpg-en-answer-${i}`)) done++;
+            document.getElementById('progressLabel').textContent=`${done} of ${totalScenarios}`;
+            document.getElementById('progressFill').style.width=`${done/totalScenarios*100}%`;
+        }
+        let breathingTimer;
+        function startBreathingReset(){
+            clearInterval(breathingTimer); let left=60; const orb=document.getElementById('breathingOrb'),cue=document.getElementById('breathingCue'),btn=document.getElementById('breathingBtn'); btn.disabled=true;
+            const tick=()=>{const phase=(60-left)%10;orb.classList.toggle('expand',phase<4);orb.textContent=left+'s';cue.textContent=phase<4?'Breathe in slowly…':phase<6?'Hold gently…':'Breathe out longer…';left--;if(left<0){clearInterval(breathingTimer);orb.classList.remove('expand');orb.textContent='Notice';cue.textContent='What belongs to this moment—and what might belong to your past?';btn.disabled=false;btn.textContent='Practice again';}};tick();breathingTimer=setInterval(tick,1000);
+        }
+        function showSaved(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1200)}
+        document.querySelectorAll('.reflection-area textarea').forEach(area=>{const saved=localStorage.getItem('mpg-en-'+area.id);if(saved)area.value=saved;const status=document.createElement('div');status.className='save-status';status.textContent='Saved only on this device';area.after(status);area.addEventListener('input',()=>{localStorage.setItem('mpg-en-'+area.id,area.value);showSaved()})});
+        for(let i=1;i<=totalScenarios;i++){const a=localStorage.getItem(`mpg-en-answer-${i}`);if(a)selectScenarioOption(i,a)}updateProgress();
     </script>
 </body>
 </html>
