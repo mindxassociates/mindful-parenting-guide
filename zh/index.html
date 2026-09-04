@@ -173,7 +173,7 @@
             border-color: #222 transparent transparent transparent;
         }
 
-        .tooltip-term:hover .tooltip-text {
+        .tooltip-term:hover .tooltip-text, .tooltip-term:focus .tooltip-text {
             visibility: visible;
             opacity: 1;
         }
@@ -542,12 +542,14 @@
         /* 视觉与互动升级 */
         :root { --primary:#2d6a5a;--primary-light:#eaf4ef;--secondary:#c56b3d;--secondary-light:#fff1e8;--bg-main:#f8f5ef;--text-main:#18352f;--text-muted:#60736e;--shadow:0 16px 45px rgba(31,72,61,.10);--radius:22px }
         body{background:radial-gradient(circle at 15% 0,#edf6ef 0,transparent 32rem),var(--bg-main)}header{background:rgba(255,253,249,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(45,106,90,.12);box-shadow:none}.header-actions{display:flex;gap:.55rem;align-items:center}.header-btn{border:1px solid #ceddd7;background:#fff;color:var(--text-main);border-radius:999px;padding:.55rem .85rem;font-weight:700;cursor:pointer;text-decoration:none}.header-btn:hover{background:var(--primary-light)}
-        .hero{max-width:1040px;text-align:left;padding:5rem 0 3rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:center}.hero h1{font-size:clamp(2.7rem,6vw,5rem);letter-spacing:-.055em;line-height:1.12}.hero p{max-width:650px}.hero-visual{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#fff 0 15%,#f4c77d 16% 29%,#f0d8cf 30% 47%,#b9d8ca 48% 65%,#e9f4ee 66%);box-shadow:var(--shadow);font-weight:800;text-align:center;padding:25%;color:var(--text-main)}
+        .hero{max-width:1040px;text-align:left;padding:5rem 0 3rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:center}.hero h1{font-size:clamp(2.7rem,6vw,5rem);letter-spacing:-.055em;line-height:1.12}.hero p{max-width:650px}.hero-visual{aspect-ratio:1;border-radius:50%;display:block;position:relative;padding:0;overflow:hidden;background:radial-gradient(circle at 38% 34%,#fffdf8 0 10%,#f5c77e 11% 24%,#efdad0 25% 40%,#b9d8ca 41% 59%,#e9f4ee 60% 100%);box-shadow:var(--shadow)}.hero-visual::before{content:"";position:absolute;width:38%;height:58%;left:31%;top:23%;background:#2d6a5a;border-radius:90% 10% 90% 10%;transform:rotate(42deg);box-shadow:45px 38px 0 -12px #6ba189,-42px 50px 0 -15px #c56b3d}.hero-visual::after{content:"";position:absolute;width:2px;height:47%;left:50%;top:31%;background:#fffdf8;transform:rotate(42deg);transform-origin:center}
         .progress-panel{background:#fff;border:1px solid #dbe7e2;border-radius:18px;padding:1rem 1.2rem;margin-bottom:2.3rem;box-shadow:var(--shadow)}.progress-row{display:flex;justify-content:space-between;font-weight:700}.progress-track{height:10px;background:#e8eeeb;border-radius:99px;overflow:hidden;margin-top:.65rem}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#efb462);transition:width .35s ease}.reset-tool{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;background:#173b33;color:#fff;border-radius:28px;padding:1.5rem 2rem;margin-bottom:3rem;box-shadow:var(--shadow)}.breathing-orb{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#d8f6e8,#4d9a7e 48%,#286553);box-shadow:0 0 0 12px rgba(186,222,207,.15);font-weight:800;transition:transform 4s ease-in-out}.breathing-orb.expand{transform:scale(1.25)}.reset-tool p{color:#d6e7e1;margin:.25rem 0 .8rem}.reset-tool button{border:0;border-radius:999px;background:#fff;color:#173b33;padding:.65rem 1rem;font-weight:800}
         .card{border-top:0;border:1px solid #dbe7e2}.card:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(var(--primary),#efb462);border-radius:var(--radius) 0 0 var(--radius)}.card h3{color:var(--primary)}.option-btn{transition:.2s ease}.option-btn.selected{outline:3px solid rgba(45,106,90,.25);background:var(--primary-light);border-color:var(--primary);transform:translateX(4px)}.option-btn.correct{background:#e4f3ea;border-color:#2e7d52}.option-btn.incorrect{background:#fff0ed;border-color:#c45b4c}.save-status{font-size:.82rem;color:var(--secondary);font-weight:700;margin-top:.45rem;min-height:1.2em}.scenario-flipbook-container{scroll-margin-top:90px}.section-title{letter-spacing:-.035em}.paradigm-card{border:1px solid #dbe7e2;box-shadow:none}.btn-export{background:var(--primary)}
         .quick-nav{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1000;display:flex;gap:.35rem;padding:.4rem;background:rgba(24,53,47,.92);backdrop-filter:blur(12px);border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.22)}.quick-nav a{color:#fff;text-decoration:none;font-size:.82rem;padding:.45rem .7rem;border-radius:999px;white-space:nowrap}.quick-nav a:hover{background:rgba(255,255,255,.16)}.toast{position:fixed;right:1rem;top:5rem;background:#173b33;color:#fff;padding:.75rem 1rem;border-radius:12px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:.2s;z-index:2000}.toast.show{opacity:1;transform:none}
+        .mode-switch{display:flex;gap:.5rem;justify-content:center;margin:0 0 2rem}.mode-switch button{border:1px solid #cbdad4;background:#fff;border-radius:999px;padding:.75rem 1rem;font-weight:800;color:var(--text-main)}.mode-switch button.active{background:var(--primary);color:#fff}.quick-mode{background:#fff;border:1px solid #dbe7e2;border-radius:28px;padding:clamp(1.2rem,4vw,2.2rem);margin-bottom:3rem;box-shadow:var(--shadow)}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin:1.2rem 0}.moment-btn{border:1px solid #ceddd7;background:#f8fbf9;border-radius:16px;padding:1rem;text-align:left;font-weight:750;color:var(--text-main);min-height:88px}.moment-btn:hover,.moment-btn.active{background:var(--primary-light);border-color:var(--primary)}.quick-result{background:#173b33;color:#fff;border-radius:20px;padding:1.2rem;min-height:120px}.quick-result ol{padding-left:1.2rem}.age-filter{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:1rem 0}.age-filter button{border:1px solid #cad9d3;background:#fff;border-radius:999px;padding:.55rem .8rem;font-weight:700}.age-filter button.active{background:#c56b3d;color:#fff;border-color:#c56b3d}.client-tools{margin:3rem 0}.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.practice-tool{background:#fff;border:1px solid #dbe7e2;border-radius:22px;padding:1.25rem}.practice-tool.wide{grid-column:1/-1}.practice-tool label{display:block;font-weight:750;margin:.7rem 0 .3rem}.practice-tool input,.practice-tool select,.practice-tool textarea{width:100%;padding:.72rem;border:1px solid #c9d8d2;border-radius:10px;background:#fff}.practice-tool button{margin-top:.8rem;border:0;border-radius:999px;background:var(--primary);color:#fff;padding:.65rem .9rem;font-weight:800}.tool-output{margin-top:.8rem;padding:.9rem;background:var(--primary-light);border-radius:12px;min-height:50px;white-space:pre-wrap}.support-scale{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}.support-choice{border:1px solid #d7e2de;border-radius:14px;padding:.8rem;background:#fff}.support-choice strong{display:block;color:var(--primary)}.bookmark-btn{position:absolute;right:1rem;top:1rem;border:0;background:#f0f5f2;border-radius:999px;width:38px;height:38px;font-size:1.1rem}.bookmark-btn.saved{background:#ffe6ad}.takeaway{background:#fff8e9;border:1px solid #efdbad;border-radius:22px;padding:1.3rem;margin:2rem 0}.takeaway ul{padding-left:1.2rem}.data-controls{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin:1.5rem}.danger-btn{border:1px solid #b34c42;background:#fff;color:#9a332b;border-radius:999px;padding:.6rem .9rem;font-weight:750}.privacy-note{font-size:.88rem;color:var(--text-muted);text-align:center}.support-note{background:#fff2ef;border-left:5px solid #c65e4e;padding:1rem 1.2rem;border-radius:12px;margin:2rem 0}.card:focus-within,.moment-btn:focus-visible,.header-btn:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #f2b761;outline-offset:3px}
         @media(max-width:768px){header{padding:.8rem 1rem}.logo{font-size:1rem}.header-actions .header-btn:first-child{display:none}.hero{grid-template-columns:1fr;padding:3.5rem 0 2rem}.hero-visual{max-width:260px;margin:auto}.reset-tool{grid-template-columns:1fr;text-align:center}.breathing-orb{margin:auto}.quick-nav{max-width:calc(100% - 20px);overflow:auto;justify-content:flex-start}.quick-nav a{font-size:.75rem}.container{padding:0 1rem}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.breathing-orb{transform:none!important}}@media print{header,.quick-nav,.reset-tool,.export-container,.scenario-controls,.options-group,.toast{display:none!important}body{background:#fff;padding:0}.card,.flipbook-card,.paradigm-card{box-shadow:none;break-inside:avoid}.flip-page{display:block!important;page-break-inside:avoid}.hero{display:block;padding:1rem 0}.hero-visual{display:none}.reflection-area textarea{border:0;min-height:70px}.feedback-box{display:block!important}}
     </style>
+    <style>@media(max-width:768px){.quick-grid,.tool-grid{grid-template-columns:1fr}.support-scale{grid-template-columns:1fr}.practice-tool.wide{grid-column:auto}.mode-switch{align-items:stretch}.mode-switch button{flex:1}.header-actions .header-btn:first-child{display:inline-block}}</style>
 </head>
 <body>
 
@@ -557,16 +559,25 @@
             <div class="logo">
                 <span>🌱</span> 正念育儿指南
             </div>
-            <div class="header-actions"><button class="header-btn" onclick="window.print()">打印 / 保存 PDF</button><a class="header-btn" href="../index.html">English</a></div>
+            <div class="header-actions"><button class="header-btn" onclick="window.print()">打印 / 保存 PDF</button></div>
         </header>
 
         <main class="container">
             <!-- HERO SECTION -->
             <section class="hero">
-                <div><div style="color:var(--primary);font-weight:800;letter-spacing:.12em;font-size:.8rem">实用亲子关系指南</div><h1>先连接，<br>再引导。</h1><p>用互动练习学习回应情绪、修复关系裂痕，并读懂日常行为背后的沟通信号。</p></div><div class="hero-visual">安全感 → 连接 → 成长</div>
+                <div><div style="color:var(--primary);font-weight:800;letter-spacing:.12em;font-size:.8rem">实用亲子关系指南</div><h1>先连接，<br>再引导。</h1><p>用互动练习学习回应情绪、修复关系裂痕，并读懂日常行为背后的沟通信号。</p></div><div class="hero-visual" aria-hidden="true"></div>
             </section>
             <div class="progress-panel"><div class="progress-row"><span>我的练习进度</span><span id="progressLabel">0 / 6</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
             <section class="reset-tool"><div class="breathing-orb" id="breathingOrb">准备好了吗？</div><div><h2>回应孩子前，先给自己 60 秒</h2><p id="breathingCue">双脚踩稳地面，轻轻放松肩膀。</p><button id="breathingBtn" onclick="startBreathingReset()">开始呼吸练习</button></div></section>
+            <div class="mode-switch" aria-label="选择使用方式"><button class="active" onclick="document.getElementById('quick-help').scrollIntoView()">现在就用 · 3 分钟</button><button onclick="document.getElementById('core-foundations').scrollIntoView()">深入了解</button></div>
+            <section class="quick-mode" id="quick-help"><h2>此刻正在发生什么？</h2><p>选择最接近的一项。这里会给你几个简短步骤，而不是一大段道理。</p><div class="age-filter"><strong>根据孩子的年龄调整：</strong><button class="active" data-age="young" onclick="setAge(this)">婴幼儿</button><button data-age="school" onclick="setAge(this)">学龄期</button><button data-age="teen" onclick="setAge(this)">青少年</button></div><div class="quick-grid"><button class="moment-btn" onclick="quickHelp(this,'temper')">我快要控制不住情绪了</button><button class="moment-btn" onclick="quickHelp(this,'meltdown')">孩子被情绪淹没了</button><button class="moment-btn" onclick="quickHelp(this,'rupture')">我们之间出现了裂痕</button><button class="moment-btn" onclick="quickHelp(this,'limit')">我需要设立边界</button></div><div class="quick-result" id="quickResult" aria-live="polite"><strong>从这里开始：</strong><p>请选择上面的一种情境。如果有人处于危险中，请先确保安全。</p></div></section>
+            <section class="client-tools" id="tools"><h2 class="section-title">为困难时刻组织语言</h2><div class="tool-grid">
+              <article class="practice-tool"><h3>接住情绪，同时守住边界</h3><label>孩子想要什么，或正在感受什么？</label><input id="vFeeling" placeholder="你真的还想继续玩"><label>需要保留什么边界？</label><input id="vLimit" placeholder="但我们现在要离开了"><button onclick="buildClientScript('validate')">生成表达</button><div class="tool-output" id="validateOut">即使答案是“不可以”，孩子的感受仍然可以被理解。</div></article>
+              <article class="practice-tool"><h3>吼了孩子之后如何修复</h3><label>你刚才做了什么？</label><input id="rAction" placeholder="我刚才在车里对你大喊"><label>下次准备怎么做？</label><input id="rNext" placeholder="先停一下再开口"><button onclick="buildClientScript('repair')">生成道歉表达</button><div class="tool-output" id="repairOut">修复包括：承担自己的行为、倾听影响，以及提出具体改变。</div></article>
+              <article class="practice-tool wide"><h3>读懂行为练习</h3><div class="tool-grid"><div><label>不贴标签，只描述你观察到的</label><input id="bObserve" placeholder="把书包扔在地上并大喊"><label>之前发生了什么？</label><input id="bBefore" placeholder="我让孩子开始写作业"></div><div><label>可能的感受或需要</label><select id="bNeed"><option>不知所措 / 需要帮助</option><option>疲惫、饥饿或刺激过多</option><option>需要连接</option><option>需要更多自主感</option><option>需要可预期感</option><option>暂时还不确定</option></select><label>平静后可以练习的能力</label><input id="bSkill" placeholder="请求休息五分钟"></div></div><label>必须守住的边界</label><input id="bBoundary" placeholder="我不会让你扔东西"><button onclick="decodeClientBehavior()">生成回应思路</button><div class="tool-output" id="behaviorOut">观察 → 好奇 → 调节 → 边界 → 平静后再教。</div></article>
+              <article class="practice-tool"><h3>帮助、搭脚手架，还是包办？</h3><p>选择能让任务安全、可行的最少帮助。</p><div class="support-scale"><div class="support-choice"><strong>帮助</strong>问孩子需要什么，给一个提示。</div><div class="support-choice"><strong>搭脚手架</strong>一起完成一步，再退后。</div><div class="support-choice"><strong>包办</strong>替孩子完成。仅用于危险或任务明显超出能力时。</div></div><label>孩子正在尝试做什么？</label><input id="supportTask" placeholder="完成学校项目"><button onclick="planSupport()">建议从哪里开始</button><div class="tool-output" id="supportOut">可以先问：“哪一部分让你觉得最难？”</div></article>
+              <article class="practice-tool"><h3>和孩子谈隐瞒或说谎</h3><label>发生了什么？</label><input id="lieEvent" placeholder="你说去学习，实际上去了聚会"><label>你担心的安全或信任问题</label><input id="lieNeed" placeholder="我需要知道你在哪里"><button onclick="buildClientScript('honesty')">生成开场表达</button><div class="tool-output" id="honestyOut">从担心与好奇开始，不给孩子的人格贴标签。</div></article>
+            </div></section>
 
             <!-- CORE PILLARS GRID -->
             <h2 class="section-title" id="core-foundations">六大核心育儿基石</h2>
@@ -689,6 +700,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(1, 'A')">A. 不去理会：“带孩子可真麻烦，这点小事也大惊小怪。”</button>
                                 <button class="option-btn" onclick="selectScenarioOption(1, 'B')">B. 反思并修复：“妈妈/爸爸发火是因为我小时候无人帮助。我是对过去生气，而不是对你，对不起。”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(1, 'C')">C. 先让自己平静下来，稍后回到孩子身边，问问刚才的经历对孩子来说是什么感受。</button>
                             </div>
                             <div id="feedback-s1" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -709,6 +721,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(2, 'A')">A. 事实网球：“脏碗盘放着会滋生细菌！这太不卫生了！”</button>
                                 <button class="option-btn" onclick="selectScenarioOption(2, 'B')">B. 我陈述句：“我早上刚清理完，回家又看到堆着脏碗盘，心里觉得很烦。如果你随手洗掉，我会舒服很多。”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(2, 'C')">C. 此刻先不讨论，等大家状态好一些时，再开一次简短的家庭分工讨论。</button>
                             </div>
                             <div id="feedback-s2" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -729,6 +742,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(3, 'A')">A. 转移注意力：“快看窗外有一只小狗！走，我们去玩游戏机吧！”</button>
                                 <button class="option-btn" onclick="selectScenarioOption(3, 'B')">B. 确认与包容：“你现在看起来真的觉得很无聊、很闷。今天下午确实有点漫长无趣，对吧？”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(3, 'C')">C. 先理解孩子的无聊，再问：“你想让我陪一会儿，还是一起想想可以做什么？”</button>
                             </div>
                             <div id="feedback-s3" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -749,6 +763,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(4, 'A')">A. 睡眠训练：任由他哭泣，直到他放弃不再呼唤你。</button>
                                 <button class="option-btn" onclick="selectScenarioOption(4, 'B')">B. 逐步推进：从孩子的“舒适基线”出发（如：拥抱 -> 坐在床边 -> 逐渐移开距离）。</button>
+                                <button class="option-btn" onclick="selectScenarioOption(4, 'C')">C. 先了解作息、身体状况、感官需要和家庭承受力，再制定循序渐进的计划。</button>
                             </div>
                             <div id="feedback-s4" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -769,6 +784,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(5, 'A')">A. 给他们一个播放动画片的平板电脑，好让大家都“安静一下”。</button>
                                 <button class="option-btn" onclick="selectScenarioOption(5, 'B')">B. 把手机扣下，进行专注的观察与来回互动：“看看你用的这些鲜艳的颜色！”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(5, 'C')">C. 给出具体时间：“我还需要三分钟处理完，然后认真看你的画。”之后按约定做到。</button>
                             </div>
                             <div id="feedback-s5" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -789,6 +805,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(6, 'A')">A. 严厉惩罚：关禁闭一个月并大吼：“你这个骗子，再也别想让我相信你！”</button>
                                 <button class="option-btn" onclick="selectScenarioOption(6, 'B')">B. 界定你自己：“我很害怕，因为酒精会让你置身险境，而我觉得你还没准备好。在重新建立信任之前，我需要你早点回家。”</button>
+                                <button class="option-btn" onclick="selectScenarioOption(6, 'C')">C. 先好奇地了解发生了什么，再一起确定安全措施和重建信任的步骤。</button>
                             </div>
                             <div id="feedback-s6" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -866,6 +883,9 @@
                     </div>
                 </div>
             </section>
+            <section class="takeaway" id="takeaway"><h2>我的个性化要点</h2><p>点击核心内容卡片上的 ☆ 收藏。你选中的内容和完成的情境练习会汇总在这里。</p><ul id="takeawayList"><li>还没有收藏内容。</li></ul><button class="header-btn" onclick="window.print()">打印我的要点</button></section>
+            <aside class="support-note"><strong>什么时候需要更多支持：</strong>本工具仅用于心理健康教育，不能替代个体化的专业服务。如果家庭冲突让人感到不安全，或你担心创伤、抑郁、物质使用、暴力等问题，请寻求专业帮助。在美国可拨打或短信联系 <strong>988</strong>；如有紧急危险，请联系当地急救服务。</aside>
+            <p class="privacy-note">你的心得、答案和收藏仅保存在当前浏览器中，本页面不会将这些内容发送出去。</p><div class="data-controls"><button class="danger-btn" onclick="clearClientData()">清除我的保存内容</button></div>
         </main>
 
         <!-- FOOTER -->
@@ -913,27 +933,27 @@
         const feedbackData = {
             1: {
                 A: "<strong>错失修复良机：</strong> 把怒火归咎于‘孩子太麻烦’忽视了自己的内在触发点。孩子可能会误以为你不关心他，或者以为他表达求助是错的。",
-                B: "<strong>最佳修复策略！</strong> 你反思了怒火的源头，为自己的情绪错位承担了责任，并修复了关系裂痕，让孩子重获安全感。"
+                B: "<strong>更有助于连接：</strong> 你觉察了怒火的源头，承担自己的部分，并主动修复关系。", C: "<strong>也是一种稳妥的选择：</strong> 先调节自己可以避免继续伤害；关键是稍后真的回来，而不是回避这件事。"
             },
             2: {
                 A: "<strong>事实网球：</strong> 抛出理性的理由只能制造‘胜负对立’，增加家人的敌意而不是善意。",
-                B: "<strong>最佳沟通！</strong> 你用‘我陈述句’表达了真实的感受，而没有去攻击或指责对方，引发的是合作而不是防御。"
+                B: "<strong>更有助于合作：</strong> 你表达自己的真实感受，没有攻击或定义对方。", C: "<strong>可能有效：</strong> 沟通时机很重要，但需要明确说明稍后会谈，并且按约定回来。"
             },
             3: {
                 A: "<strong>转移注意力：</strong> 用把戏转移注意力虽然省事，但无法帮孩子学会排解和包容复杂情绪，也有损专注力。",
-                B: "<strong>最佳包容！</strong> 你读懂了夸张言语背后的真实情感。被理解的感觉能让低落情绪自然平复。"
+                B: "<strong>更贴近孩子：</strong> 你听见了夸张表达背后的真实感受。被理解后，情绪更有机会自然流动。", C: "<strong>兼顾连接与自主：</strong> 先回应感受，再让孩子选择需要怎样的陪伴。"
             },
             4: {
                 A: "<strong>睡眠训练风险：</strong> 让孩子独自哭泣只是迫使他放弃呼唤，但体内的压力荷尔蒙依然很高。",
-                B: "<strong>最佳温和分离！</strong> 从舒适基线一步步渐进推开，能建立安全依附关系与长期的睡眠信心。"
+                B: "<strong>更具回应性：</strong> 从孩子当前能承受的程度逐步调整，有助于建立信任和信心。", C: "<strong>有价值的评估：</strong> 睡眠受到许多因素影响。先了解完整情境，计划才更现实。"
             },
             5: {
                 A: "<strong>电子屏幕替代：</strong> 用屏幕取代真实的人际接触，容易让孩子习惯数字刺激，而丧失真实交流的能力。",
-                B: "<strong>最佳双向互动！</strong> 专注的观察告诉孩子‘你很重要’。这种有来有往的对话是心理健康的基石。"
+                B: "<strong>更有助于连接：</strong> 专注回应让孩子感到自己很重要，也支持有来有往的交流。", C: "<strong>现实而尊重的回应：</strong> 父母不必随时立刻停下；给出具体时间并做到，也能保护关系。"
             },
             6: {
                 A: "<strong>严酷惩罚：</strong> 贴标签（‘骗子’）与羞辱不会让孩子更诚实，只会把他们训练成更高明的撒谎者。",
-                B: "<strong>最佳界限！</strong> 你表达的是你自己的感受与底线（‘我很害怕’），而不是评判孩子的人格，在保障安全的同时保持沟通畅通。"
+                B: "<strong>清楚而尊重：</strong> 你表达自己的感受与底线，而不是评判孩子的人格。", C: "<strong>既合作又坚定：</strong> 好奇可以帮助理解隐瞒背后的原因，清楚的后续安排仍然能够保护安全并重建信任。"
             }
         };
 
@@ -974,7 +994,7 @@
             feedbackBox.innerHTML = feedbackData[scenarioNum][optionKey];
             feedbackBox.style.display = 'block';
             const page = document.querySelector(`.flip-page[data-scenario="${scenarioNum}"]`);
-            page.querySelectorAll('.option-btn').forEach((btn,index)=>{btn.classList.remove('selected','correct','incorrect');if((index===0?'A':'B')===optionKey)btn.classList.add('selected',optionKey==='B'?'correct':'incorrect')});
+            page.querySelectorAll('.option-btn').forEach((btn,index)=>{btn.classList.remove('selected','correct','incorrect');const key=['A','B','C','D'][index];if(key===optionKey)btn.classList.add('selected',optionKey==='A'?'incorrect':'correct')});
             localStorage.setItem(`mpg-zh-answer-${scenarioNum}`,optionKey);updateProgress();
         }
 
@@ -1001,6 +1021,13 @@
         function showSaved(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1200)}
         document.querySelectorAll('.reflection-area textarea').forEach(area=>{const saved=localStorage.getItem('mpg-zh-'+area.id);if(saved)area.value=saved;const status=document.createElement('div');status.className='save-status';status.textContent='仅保存在当前设备';area.after(status);area.addEventListener('input',()=>{localStorage.setItem('mpg-zh-'+area.id,area.value);showSaved()})});
         for(let i=1;i<=totalScenarios;i++){const a=localStorage.getItem(`mpg-zh-answer-${i}`);if(a)selectScenarioOption(i,a)}updateProgress();
+        let clientAge=localStorage.getItem('mpg-zh-age')||'young';
+        const quickCopy={temper:{young:['先确保空间安全，放下手里的物品。','呼气比吸气长，并告诉自己：“我的情绪正在过载。”','只说一句：“我需要缓一缓，我会留在这里。”','等声音能够平稳后再回应。'],school:['暂停互动：“这件事很重要，我需要两分钟冷静一下。”','留意脑中正在讲的故事，把事实与推测分开。','只选择一个目标：安全、连接或教孩子能力，而不是争输赢。','回来后，用一句平静的话重新开始。'],teen:['说明你是在暂停，不是抛下对方：“我想好好谈，不想攻击你。给我十分钟。”','活动身体、呼吸，不要在心里准备一篇训话。','问问自己：愤怒下面是什么担心或旧有触发？','在约定时间回来，从好奇开始。']},meltdown:{young:['减少语言、噪音和要求。','留在附近：“你现在很难受，我在这里。”','先保证身体安全，不在情绪风暴中讲道理。','平静后再连接，并练习缺少的能力。'],school:['描述你看到的，不做评判。','提供两个调节选项：安静待一会儿，或有人陪着。','理解感受，同时保留安全边界。','等身体平静后再解决问题。'],teen:['降低强度，保护孩子的尊严。','问：“你想要空间、陪伴，还是帮忙？”','不要围堵、训话或强迫眼神接触。','约定什么时候再回来讨论。']},rupture:{young:['蹲下来，靠近孩子。','说清自己做了什么：“我刚才大喊了。”','明确告诉孩子：“这不是你的错，对不起。”','孩子愿意的话，用拥抱或游戏重新连接。'],school:['不责怪地描述刚才发生的事。','承担自己的部分，道歉后不加“但是”。','问问孩子是什么感受，然后听。','说出下一次会做的一项具体改变。'],teen:['先问孩子是否愿意再谈刚才的事。','承担责任，不要求孩子立刻原谅。','即使记忆不同，也先听完这件事对孩子的影响。','共同确定一个改变，并做到。']},limit:{young:['先连接：“你真的很想要。”','用具体边界：“我不会让你打人。”','给一个安全替代方式。','少说话，平静执行。'],school:['看见孩子的目标或感受。','说明你允许什么、会怎么做。','提供有限但真实的选择。','公平与否可以等情绪平静后再谈。'],teen:['说清担心与边界，不评价人格。','解释要简短，不把对话变成辩论赛。','听取孩子的想法，协商可以协商的部分。','对不能协商的部分保持稳定和可预期。']}};
+        function setAge(btn){document.querySelectorAll('[data-age]').forEach(b=>b.classList.toggle('active',b===btn));clientAge=btn.dataset.age;localStorage.setItem('mpg-zh-age',clientAge)}function quickHelp(btn,type){document.querySelectorAll('.moment-btn').forEach(b=>b.classList.toggle('active',b===btn));const labels={temper:'快要控制不住情绪时',meltdown:'孩子被情绪淹没时',rupture:'关系出现裂痕后',limit:'需要设立边界时'};document.getElementById('quickResult').innerHTML=`<strong>${labels[type]}</strong><ol>${quickCopy[type][clientAge].map(x=>`<li>${x}</li>`).join('')}</ol>`}function val(id,fallback){return document.getElementById(id).value.trim()||fallback}
+        function buildClientScript(type){if(type==='validate')document.getElementById('validateOut').textContent=`${val('vFeeling','你真的希望事情不一样')}。这对你来说确实很难。${val('vLimit','这个边界仍然需要保留')}。你难受的时候，我会陪着你。`;if(type==='repair')document.getElementById('repairOut').textContent=`对不起，${val('rAction','我刚才的反应伤害了你')}。这是我的责任。刚才那样对你来说是什么感受？下次我会${val('rNext','先停一下，再平静地说')}。`;if(type==='honesty')document.getElementById('honestyOut').textContent=`我了解到，${val('lieEvent','实际发生的事和你告诉我的不一样')}。我想理解，是什么让你觉得很难说实话。我担心是因为${val('lieNeed','安全和信任都很重要')}。我们一起谈谈接下来需要怎么做。`}
+        function decodeClientBehavior(){document.getElementById('behaviorOut').textContent=`我观察到：${val('bObserve','一个困难行为')}。之前发生了：${val('bBefore','情境有所变化')}。一种可能是：${document.getElementById('bNeed').value}。我会先帮助大家稳定，并说：“${val('bBoundary','我会确保大家安全')}。”平静以后，再练习：${val('bSkill','求助或请求暂停')}。`}function planSupport(){document.getElementById('supportOut').textContent=`对于“${val('supportTask','这项任务')}”，先从少量帮助开始：问哪部分最难，给一个提示。如果还不够，就一起完成一步，再退后。只有在不安全或明显超出当前能力时，才替孩子接手。`}
+        const foundationCards=[...document.querySelectorAll('#core-foundations + .grid .card')];foundationCards.forEach((card,i)=>{const b=document.createElement('button');b.className='bookmark-btn';b.type='button';b.setAttribute('aria-label','收藏这条内容');b.textContent='☆';b.onclick=()=>{const saved=JSON.parse(localStorage.getItem('mpg-zh-bookmarks')||'[]');const at=saved.indexOf(i);at>=0?saved.splice(at,1):saved.push(i);localStorage.setItem('mpg-zh-bookmarks',JSON.stringify(saved));renderBookmarks();showSaved()};card.appendChild(b)});function renderBookmarks(){const saved=JSON.parse(localStorage.getItem('mpg-zh-bookmarks')||'[]');foundationCards.forEach((c,i)=>{const b=c.querySelector('.bookmark-btn'),on=saved.includes(i);b.classList.toggle('saved',on);b.textContent=on?'★':'☆';b.setAttribute('aria-pressed',on)});const list=document.getElementById('takeawayList');const items=saved.map(i=>foundationCards[i].querySelector('h3').textContent);const done=[1,2,3,4,5,6].filter(i=>localStorage.getItem(`mpg-zh-answer-${i}`)).length;list.innerHTML=(items.length?items.map(x=>`<li>${x}</li>`).join(''):'<li>还没有收藏内容。</li>')+`<li>已完成 ${done} / 6 个情境练习。</li>`}function clearClientData(){if(confirm('确定要清除本指南保存的所有心得、答案、进度和收藏吗？')){Object.keys(localStorage).filter(k=>k.startsWith('mpg-zh-')).forEach(k=>localStorage.removeItem(k));location.reload()}}document.querySelectorAll('[data-age]').forEach(b=>b.classList.toggle('active',b.dataset.age===clientAge));renderBookmarks();
+        document.querySelectorAll('.tooltip-term').forEach(t=>{t.tabIndex=0});
     </script>
 </body>
 </html>

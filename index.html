@@ -173,7 +173,7 @@
             border-color: #222 transparent transparent transparent;
         }
 
-        .tooltip-term:hover .tooltip-text {
+        .tooltip-term:hover .tooltip-text, .tooltip-term:focus .tooltip-text {
             visibility: visible;
             opacity: 1;
         }
@@ -545,7 +545,7 @@
         body{background:radial-gradient(circle at 15% 0,#edf6ef 0,transparent 32rem),var(--bg-main)}
         header{background:rgba(255,253,249,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(45,106,90,.12);box-shadow:none}
         .header-actions{display:flex;gap:.55rem;align-items:center}.header-btn{border:1px solid #ceddd7;background:#fff;color:var(--text-main);border-radius:999px;padding:.55rem .85rem;font-weight:700;cursor:pointer;text-decoration:none}.header-btn:hover{background:var(--primary-light)}
-        .hero{max-width:1040px;text-align:left;padding:5rem 0 3rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:center}.hero h1{font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.055em;line-height:1.01}.hero p{max-width:650px}.hero-visual{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#fff 0 15%,#f4c77d 16% 29%,#f0d8cf 30% 47%,#b9d8ca 48% 65%,#e9f4ee 66%);box-shadow:var(--shadow);font-weight:800;text-align:center;padding:25%;color:var(--text-main)}
+        .hero{max-width:1040px;text-align:left;padding:5rem 0 3rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:center}.hero h1{font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.055em;line-height:1.01}.hero p{max-width:650px}.hero-visual{aspect-ratio:1;border-radius:50%;display:block;position:relative;padding:0;overflow:hidden;background:radial-gradient(circle at 38% 34%,#fffdf8 0 10%,#f5c77e 11% 24%,#efdad0 25% 40%,#b9d8ca 41% 59%,#e9f4ee 60% 100%);box-shadow:var(--shadow)}.hero-visual::before{content:"";position:absolute;width:38%;height:58%;left:31%;top:23%;background:#2d6a5a;border-radius:90% 10% 90% 10%;transform:rotate(42deg);box-shadow:45px 38px 0 -12px #6ba189,-42px 50px 0 -15px #c56b3d}.hero-visual::after{content:"";position:absolute;width:2px;height:47%;left:50%;top:31%;background:#fffdf8;transform:rotate(42deg);transform-origin:center}
         .progress-panel{background:#fff;border:1px solid #dbe7e2;border-radius:18px;padding:1rem 1.2rem;margin-bottom:2.3rem;box-shadow:var(--shadow)}.progress-row{display:flex;justify-content:space-between;font-weight:700}.progress-track{height:10px;background:#e8eeeb;border-radius:99px;overflow:hidden;margin-top:.65rem}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#efb462);transition:width .35s ease}
         .reset-tool{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;background:#173b33;color:#fff;border-radius:28px;padding:1.5rem 2rem;margin-bottom:3rem;box-shadow:var(--shadow)}.breathing-orb{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#d8f6e8,#4d9a7e 48%,#286553);box-shadow:0 0 0 12px rgba(186,222,207,.15);font-weight:800;transition:transform 4s ease-in-out}.breathing-orb.expand{transform:scale(1.25)}.reset-tool p{color:#d6e7e1;margin:.25rem 0 .8rem}.reset-tool button{border:0;border-radius:999px;background:#fff;color:#173b33;padding:.65rem 1rem;font-weight:800}
         .card{border-top:0;border:1px solid #dbe7e2}.card:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(var(--primary),#efb462);border-radius:var(--radius) 0 0 var(--radius)}.card h3{color:var(--primary)}
@@ -553,10 +553,12 @@
         .save-status{font-size:.82rem;color:var(--secondary);font-weight:700;margin-top:.45rem;min-height:1.2em}.scenario-flipbook-container{scroll-margin-top:90px}.section-title{letter-spacing:-.035em}.paradigm-card{border:1px solid #dbe7e2;box-shadow:none}.btn-export{background:var(--primary)}
         .quick-nav{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1000;display:flex;gap:.35rem;padding:.4rem;background:rgba(24,53,47,.92);backdrop-filter:blur(12px);border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.22)}.quick-nav a{color:#fff;text-decoration:none;font-size:.82rem;padding:.45rem .7rem;border-radius:999px;white-space:nowrap}.quick-nav a:hover{background:rgba(255,255,255,.16)}
         .toast{position:fixed;right:1rem;top:5rem;background:#173b33;color:#fff;padding:.75rem 1rem;border-radius:12px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:.2s;z-index:2000}.toast.show{opacity:1;transform:none}
+        .mode-switch{display:flex;gap:.5rem;justify-content:center;margin:0 0 2rem}.mode-switch button{border:1px solid #cbdad4;background:#fff;border-radius:999px;padding:.75rem 1rem;font-weight:800;color:var(--text-main)}.mode-switch button.active{background:var(--primary);color:#fff}.quick-mode{background:#fff;border:1px solid #dbe7e2;border-radius:28px;padding:clamp(1.2rem,4vw,2.2rem);margin-bottom:3rem;box-shadow:var(--shadow)}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin:1.2rem 0}.moment-btn{border:1px solid #ceddd7;background:#f8fbf9;border-radius:16px;padding:1rem;text-align:left;font-weight:750;color:var(--text-main);min-height:88px}.moment-btn:hover,.moment-btn.active{background:var(--primary-light);border-color:var(--primary)}.quick-result{background:#173b33;color:#fff;border-radius:20px;padding:1.2rem;min-height:120px}.quick-result ol{padding-left:1.2rem}.age-filter{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:1rem 0}.age-filter button{border:1px solid #cad9d3;background:#fff;border-radius:999px;padding:.55rem .8rem;font-weight:700}.age-filter button.active{background:#c56b3d;color:#fff;border-color:#c56b3d}.client-tools{margin:3rem 0}.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.practice-tool{background:#fff;border:1px solid #dbe7e2;border-radius:22px;padding:1.25rem}.practice-tool.wide{grid-column:1/-1}.practice-tool label{display:block;font-weight:750;margin:.7rem 0 .3rem}.practice-tool input,.practice-tool select,.practice-tool textarea{width:100%;padding:.72rem;border:1px solid #c9d8d2;border-radius:10px;background:#fff}.practice-tool button{margin-top:.8rem;border:0;border-radius:999px;background:var(--primary);color:#fff;padding:.65rem .9rem;font-weight:800}.tool-output{margin-top:.8rem;padding:.9rem;background:var(--primary-light);border-radius:12px;min-height:50px;white-space:pre-wrap}.support-scale{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}.support-choice{border:1px solid #d7e2de;border-radius:14px;padding:.8rem;background:#fff}.support-choice strong{display:block;color:var(--primary)}.bookmark-btn{position:absolute;right:1rem;top:1rem;border:0;background:#f0f5f2;border-radius:999px;width:38px;height:38px;font-size:1.1rem}.bookmark-btn.saved{background:#ffe6ad}.takeaway{background:#fff8e9;border:1px solid #efdbad;border-radius:22px;padding:1.3rem;margin:2rem 0}.takeaway ul{padding-left:1.2rem}.data-controls{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin:1.5rem}.danger-btn{border:1px solid #b34c42;background:#fff;color:#9a332b;border-radius:999px;padding:.6rem .9rem;font-weight:750}.privacy-note{font-size:.88rem;color:var(--text-muted);text-align:center}.support-note{background:#fff2ef;border-left:5px solid #c65e4e;padding:1rem 1.2rem;border-radius:12px;margin:2rem 0}.deep-mode[hidden],.quick-mode[hidden]{display:none}.card:focus-within,.moment-btn:focus-visible,.header-btn:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #f2b761;outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
         @media(max-width:768px){header{padding:.8rem 1rem}.logo{font-size:1rem}.header-actions .header-btn:first-child{display:none}.hero{grid-template-columns:1fr;padding:3.5rem 0 2rem}.hero-visual{max-width:260px;margin:auto}.reset-tool{grid-template-columns:1fr;text-align:center}.breathing-orb{margin:auto}.quick-nav{max-width:calc(100% - 20px);overflow:auto;justify-content:flex-start}.quick-nav a{font-size:.75rem}.container{padding:0 1rem}}
         @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.breathing-orb{transform:none!important}}
         @media print{header,.quick-nav,.reset-tool,.export-container,.scenario-controls,.options-group,.toast{display:none!important}body{background:#fff;padding:0}.card,.flipbook-card,.paradigm-card{box-shadow:none;break-inside:avoid}.flip-page{display:block!important;page-break-inside:avoid}.hero{display:block;padding:1rem 0}.hero-visual{display:none}.reflection-area textarea{border:0;min-height:70px}.feedback-box{display:block!important}}
     </style>
+    <style>@media(max-width:768px){.quick-grid,.tool-grid{grid-template-columns:1fr}.support-scale{grid-template-columns:1fr}.practice-tool.wide{grid-column:auto}.mode-switch{align-items:stretch}.mode-switch button{flex:1}.header-actions .header-btn:first-child{display:inline-block}}</style>
 </head>
 <body>
 
@@ -566,18 +568,29 @@
             <div class="logo">
                 <span>🌱</span> Mindful Parenting Guide
             </div>
-            <div class="header-actions"><button class="header-btn" onclick="window.print()">Print / Save PDF</button><a class="header-btn" href="zh/index.html">中文</a></div>
+            <div class="header-actions"><button class="header-btn" onclick="window.print()">Print / Save PDF</button></div>
         </header>
 
         <main class="container">
             <!-- HERO SECTION -->
             <section class="hero">
                 <div><div style="color:var(--primary);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem">A practical relationship guide</div><h1>Connect first.<br>Guide second.</h1>
-                <p>An interactive, digestible guide to emotional attunement, relationship repair, and understanding the messages beneath everyday behavior.</p></div><div class="hero-visual">Safety → Connection → Growth</div>
+                <p>An interactive, digestible guide to emotional attunement, relationship repair, and understanding the messages beneath everyday behavior.</p></div><div class="hero-visual" aria-hidden="true"></div>
             </section>
 
             <div class="progress-panel"><div class="progress-row"><span>Your practice progress</span><span id="progressLabel">0 of 6</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
             <section class="reset-tool"><div class="breathing-orb" id="breathingOrb">Ready?</div><div><h2>A 60-second reset before you respond</h2><p id="breathingCue">Put both feet down. Let your shoulders soften.</p><button id="breathingBtn" onclick="startBreathingReset()">Begin guided breathing</button></div></section>
+
+            <div class="mode-switch" aria-label="Choose a mode"><button class="active" onclick="document.getElementById('quick-help').scrollIntoView()">Use it now · 3 minutes</button><button onclick="document.getElementById('core-foundations').scrollIntoView()">Learn more deeply</button></div>
+            <section class="quick-mode" id="quick-help"><h2>What is happening right now?</h2><p>Choose the closest fit. You will get a short sequence—not a lecture.</p><div class="age-filter" aria-label="Child's developmental stage"><strong>Adapt language for:</strong><button class="active" data-age="young" onclick="setAge(this)">Baby / toddler</button><button data-age="school" onclick="setAge(this)">School-age</button><button data-age="teen" onclick="setAge(this)">Teenager</button></div><div class="quick-grid"><button class="moment-btn" onclick="quickHelp(this,'temper')">I am about to lose my temper</button><button class="moment-btn" onclick="quickHelp(this,'meltdown')">My child is overwhelmed</button><button class="moment-btn" onclick="quickHelp(this,'rupture')">We had a rupture</button><button class="moment-btn" onclick="quickHelp(this,'limit')">I need to set a limit</button></div><div class="quick-result" id="quickResult" aria-live="polite"><strong>Start here:</strong><p>Choose one situation above. If anyone is unsafe, address safety first.</p></div></section>
+
+            <section class="client-tools" id="tools"><h2 class="section-title">Build words for a difficult moment</h2><div class="tool-grid">
+              <article class="practice-tool"><h3>Validate + hold a boundary</h3><label>What does your child want or feel?</label><input id="vFeeling" placeholder="You really want to keep playing"><label>What limit needs to stay?</label><input id="vLimit" placeholder="It is time to leave"><button onclick="buildClientScript('validate')">Create language</button><div class="tool-output" id="validateOut">Their feeling can make sense even when the answer is no.</div></article>
+              <article class="practice-tool"><h3>Repair after yelling</h3><label>What did you do?</label><input id="rAction" placeholder="I shouted at you in the car"><label>What will you try next time?</label><input id="rNext" placeholder="Pause before speaking"><button onclick="buildClientScript('repair')">Create an apology</button><div class="tool-output" id="repairOut">A repair owns the behavior, hears the impact, and names a concrete next step.</div></article>
+              <article class="practice-tool wide"><h3>Behavior decoder</h3><div class="tool-grid"><div><label>What did you observe—without labels?</label><input id="bObserve" placeholder="Threw the backpack and yelled"><label>What happened just before?</label><input id="bBefore" placeholder="I asked them to begin homework"></div><div><label>Possible feeling or need</label><select id="bNeed"><option>Overwhelmed / needs help</option><option>Tired, hungry, or overstimulated</option><option>Needs connection</option><option>Needs more autonomy</option><option>Needs predictability</option><option>I am not sure yet</option></select><label>Skill to practice later</label><input id="bSkill" placeholder="Ask for a five-minute break"></div></div><label>Necessary boundary</label><input id="bBoundary" placeholder="I will not let objects be thrown"><button onclick="decodeClientBehavior()">Build a response plan</button><div class="tool-output" id="behaviorOut">Observe → wonder → regulate → set the boundary → teach later.</div></article>
+              <article class="practice-tool"><h3>Help, scaffold, or rescue?</h3><p>Choose the lightest support that keeps the task safe and possible.</p><div class="support-scale"><div class="support-choice"><strong>Help</strong>Ask what they need; offer a hint.</div><div class="support-choice"><strong>Scaffold</strong>Do one step together, then step back.</div><div class="support-choice"><strong>Rescue</strong>Take over. Reserve for danger or demands beyond capacity.</div></div><label>What is the child trying to do?</label><input id="supportTask" placeholder="Complete a school project"><button onclick="planSupport()">Suggest a starting point</button><div class="tool-output" id="supportOut">Start by asking: “Which part feels hardest?”</div></article>
+              <article class="practice-tool"><h3>Talk about dishonesty</h3><label>What happened?</label><input id="lieEvent" placeholder="You said you were studying, but went to a party"><label>What safety or trust issue matters?</label><input id="lieNeed" placeholder="I need to know where you are"><button onclick="buildClientScript('honesty')">Create an opening</button><div class="tool-output" id="honestyOut">Lead with concern and curiosity, not a character label.</div></article>
+            </div></section>
 
             <!-- CORE PILLARS GRID -->
             <h2 class="section-title" id="core-foundations">The 6 Core Foundations</h2>
@@ -699,6 +712,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(1, 'A')">A. Dismiss it: "Kids can be such a pain. They need to stop making a fuss over nothing."</button>
                                 <button class="option-btn" onclick="selectScenarioOption(1, 'B')">B. Reflect & Repair: "I reacted to my childhood trigger, not you. I felt helpless as a kid. I'm sorry."</button>
+                                <button class="option-btn" onclick="selectScenarioOption(1, 'C')">C. Calm down first, then return later and ask what the experience was like for your child.</button>
                             </div>
                             <div id="feedback-s1" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -719,6 +733,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(2, 'A')">A. Fact Tennis: "Leaving dishes breeds bacteria and flies! It is unhygienic!"</button>
                                 <button class="option-btn" onclick="selectScenarioOption(2, 'B')">B. I-Statements: "I feel fed up coming home to dirty dishes after cleaning this morning. What would help me is if we washed as we went."</button>
+                                <button class="option-btn" onclick="selectScenarioOption(2, 'C')">C. Say nothing now, then hold a short household planning conversation when everyone has more capacity.</button>
                             </div>
                             <div id="feedback-s2" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -739,6 +754,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(3, 'A')">A. Distract: "Look out the window, a puppy! Let's play video games instead!"</button>
                                 <button class="option-btn" onclick="selectScenarioOption(3, 'B')">B. Validate & Contain: "You sound really bored and fed up right now. It feels like a quiet afternoon, doesn't it?"</button>
+                                <button class="option-btn" onclick="selectScenarioOption(3, 'C')">C. Validate first, then ask whether they want company or help thinking of an activity.</button>
                             </div>
                             <div id="feedback-s3" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -759,6 +775,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(4, 'A')">A. Sleep Training: Leave them to cry it out until they give up and stop calling for you.</button>
                                 <button class="option-btn" onclick="selectScenarioOption(4, 'B')">B. Sleep Nudging: Move step-by-step from their comfort baseline (e.g., cuddles -> sitting next to bed -> moving cot step-by-step).</button>
+                                <button class="option-btn" onclick="selectScenarioOption(4, 'C')">C. Review the routine, health, sensory needs, and family capacity before choosing a gradual plan.</button>
                             </div>
                             <div id="feedback-s4" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -779,6 +796,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(5, 'A')">A. Hand them a tablet with cartoons so you can have peace and quiet.</button>
                                 <button class="option-btn" onclick="selectScenarioOption(5, 'B')">B. Put the phone face down, engage in turn-taking observation: "Look at those bright colors you chose!"</button>
+                                <button class="option-btn" onclick="selectScenarioOption(5, 'C')">C. Give a specific return time: "I need three minutes to finish this, then I want to see your drawing." Follow through.</button>
                             </div>
                             <div id="feedback-s5" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -799,6 +817,7 @@
                             <div class="options-group">
                                 <button class="option-btn" onclick="selectScenarioOption(6, 'A')">A. Severe Punishment: Ground them for a month and scream: "You are a liar and can't be trusted!"</button>
                                 <button class="option-btn" onclick="selectScenarioOption(6, 'B')">B. Define Yourself: "I am scared because alcohol puts you in danger before I feel you are ready. I need you home earlier while we rebuild trust."</button>
+                                <button class="option-btn" onclick="selectScenarioOption(6, 'C')">C. Begin with curiosity about what happened, then collaboratively set safety and trust-repair steps.</button>
                             </div>
                             <div id="feedback-s6" class="feedback-box"></div>
                             <div class="reflection-area">
@@ -876,6 +895,9 @@
                     </div>
                 </div>
             </section>
+            <section class="takeaway" id="takeaway"><h2>My personalized takeaway</h2><p>Bookmark foundation cards with the ☆ button. Your selected ideas and completed scenarios will collect here.</p><ul id="takeawayList"><li>No bookmarks yet.</li></ul><button class="header-btn" onclick="window.print()">Print my takeaway</button></section>
+            <aside class="support-note"><strong>When more support is needed:</strong> This tool is educational and is not individualized mental health care. Seek professional support if conflict feels unsafe or you are concerned about trauma, depression, substance use, or violence. In the U.S., call or text <strong>988</strong> for crisis support; call emergency services for immediate danger.</aside>
+            <p class="privacy-note">Your reflections, answers, and bookmarks are stored only in this browser. They are not transmitted by this page.</p><div class="data-controls"><button class="danger-btn" onclick="clearClientData()">Clear my saved data</button></div>
         </main>
 
         <!-- FOOTER -->
@@ -923,27 +945,27 @@
         const feedbackData = {
             1: {
                 A: "<strong>Missed Repair:</strong> Writing off rage as 'kids being a pain' ignores your triggers. The child carries the belief that you don't care or that their genuine fear is unacceptable.",
-                B: "<strong>Optimal Repair!</strong> You examine where the anger came from, take responsibility for your emotional time warp, and repair the rupture so the child feels safe."
+                B: "<strong>More connecting:</strong> You examine where the anger came from, take responsibility, and repair the rupture so the child feels safer.", C: "<strong>A thoughtful option:</strong> Regulating first can prevent further harm. Returning later is essential so the pause does not become avoidance."
             },
             2: {
                 A: "<strong>Fact Tennis:</strong> Lobbing logical reasons over the net creates a win/lose dynamic that increases hostility rather than goodwill.",
-                B: "<strong>Optimal Communication!</strong> You express your genuine feelings using I-statements without attacking or defining the other person."
+                B: "<strong>More collaborative:</strong> You express your genuine feelings without attacking or defining the other person.", C: "<strong>Potentially helpful:</strong> Timing matters. A later conversation works when you name that you will return and actually follow through."
             },
             3: {
                 A: "<strong>Distraction:</strong> Distraction tricks the brain away from difficult feelings, discouraging long-term emotional containment and concentration.",
-                B: "<strong>Optimal Containment!</strong> You address the emotional truth behind hyperbole. Feeling understood helps the mood pass naturally."
+                B: "<strong>More attuned:</strong> You address the emotional truth behind the exaggeration. Feeling understood can help the mood move naturally.", C: "<strong>Balanced response:</strong> Connection comes first, followed by choice about what kind of help is wanted."
             },
             4: {
                 A: "<strong>Sleep Training Risks:</strong> Leaving children to cry alone eliminates their crying out for you by conditioning them to give up, but stress hormones remain high.",
-                B: "<strong>Optimal Gentle Separation!</strong> Moving step-by-step within their comfort baseline builds secure attachment and long-term sleep confidence."
+                B: "<strong>More responsive:</strong> Moving gradually from the child's comfort baseline supports trust and growing confidence.", C: "<strong>Good assessment:</strong> Sleep has many contributors. Understanding the full context helps the family choose a realistic, responsive plan."
             },
             5: {
                 A: "<strong>Screen Substitute:</strong> Replacing human connection with screens risks training the child to seek digital stimulation over real relational dialogue.",
-                B: "<strong>Optimal Reciprocity!</strong> Engaged observation tells the child 'you exist and you matter.' This reciprocal dialogue wires the brain for good mental health."
+                B: "<strong>More connecting:</strong> Engaged observation communicates that the child matters and supports reciprocal dialogue.", C: "<strong>A realistic repair:</strong> Caregivers cannot always stop instantly. A short, specific delay can protect both the task and the relationship when you follow through."
             },
             6: {
                 A: "<strong>Punitive Regime:</strong> Cracking down with heavy shame and labels ('liar') turns adolescents into more sophisticated liars to avoid getting caught.",
-                B: "<strong>Optimal Boundary!</strong> You define your own limits ('I am scared') rather than judging their character, keeping communication lines open while maintaining safety."
+                B: "<strong>Clear and respectful:</strong> You define your limits rather than judging character, keeping communication open while addressing safety.", C: "<strong>Collaborative and firm:</strong> Curiosity can reveal what drove the lie; clear follow-up steps still protect safety and rebuild trust."
             }
         };
 
@@ -986,7 +1008,7 @@
             const page = document.querySelector(`.flip-page[data-scenario="${scenarioNum}"]`);
             page.querySelectorAll('.option-btn').forEach((btn, index) => {
                 btn.classList.remove('selected','correct','incorrect');
-                if ((index === 0 ? 'A' : 'B') === optionKey) btn.classList.add('selected', optionKey === 'B' ? 'correct' : 'incorrect');
+                const key=['A','B','C','D'][index]; if (key === optionKey) btn.classList.add('selected', optionKey === 'A' ? 'incorrect' : 'correct');
             });
             localStorage.setItem(`mpg-en-answer-${scenarioNum}`, optionKey);
             updateProgress();
@@ -1024,6 +1046,24 @@
         function showSaved(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1200)}
         document.querySelectorAll('.reflection-area textarea').forEach(area=>{const saved=localStorage.getItem('mpg-en-'+area.id);if(saved)area.value=saved;const status=document.createElement('div');status.className='save-status';status.textContent='Saved only on this device';area.after(status);area.addEventListener('input',()=>{localStorage.setItem('mpg-en-'+area.id,area.value);showSaved()})});
         for(let i=1;i<=totalScenarios;i++){const a=localStorage.getItem(`mpg-en-answer-${i}`);if(a)selectScenarioOption(i,a)}updateProgress();
+        let clientAge=localStorage.getItem('mpg-en-age')||'young';
+        const quickCopy={
+          temper:{young:['Make the space safe and put down anything in your hands.','Exhale longer than you inhale. Name: “I am getting flooded.”','Use one sentence: “I need a moment. I am staying close.”','Return when your voice can be steady.'],school:['Pause the interaction: “I care about this, and I need two minutes.”','Notice the story in your mind; separate fact from interpretation.','Choose one goal: safety, connection, or teaching—not winning.','Return and speak in one calm sentence.'],teen:['Say you are pausing, not abandoning: “I want to talk without attacking you. I need ten minutes.”','Move your body, breathe, and do not draft a speech.','Ask what fear or old trigger is underneath your anger.','Return at the promised time and lead with curiosity.']},
+          meltdown:{young:['Reduce words, noise, and demands.','Stay nearby: “You are having a hard time. I am here.”','Keep bodies safe; do not teach during the storm.','Reconnect and practice the missing skill later.'],school:['Name what you see without judgment.','Offer two regulating choices: quiet space or staying together.','Validate the feeling while keeping the safety limit.','Problem-solve only after their body settles.'],teen:['Lower intensity and protect dignity.','Ask: “Do you want space, company, or help?”','Avoid cornering, lecturing, or demanding eye contact.','Agree on when to return to the issue.']},
+          rupture:{young:['Come close at their level.','Name what you did: “I yelled.”','Say clearly: “That was not your fault. I am sorry.”','Reconnect through comfort or play, if welcomed.'],school:['Describe the moment without blaming.','Own your part without adding “but.”','Ask what it was like for them and listen.','Name one specific thing you will try next time.'],teen:['Ask permission to revisit what happened.','Take responsibility without demanding forgiveness.','Hear their impact, even if you remember it differently.','Agree on one change and follow through.']},
+          limit:{young:['Connect: “You really want that.”','Use a concrete boundary: “I will not let you hit.”','Offer one safe alternative.','Follow through with few words.'],school:['Acknowledge the goal or feeling.','Define what you will allow or do.','Offer limited, genuine choices.','Discuss fairness later—not during escalation.'],teen:['State the concern and boundary without a character judgment.','Explain briefly; avoid courtroom-style argument.','Invite their perspective and negotiate what is negotiable.','Be predictable about the part that is not negotiable.']}
+        };
+        function setAge(btn){document.querySelectorAll('[data-age]').forEach(b=>b.classList.toggle('active',b===btn));clientAge=btn.dataset.age;localStorage.setItem('mpg-en-age',clientAge)}
+        function quickHelp(btn,type){document.querySelectorAll('.moment-btn').forEach(b=>b.classList.toggle('active',b===btn));const labels={temper:'When you are close to losing your temper',meltdown:'When your child is overwhelmed',rupture:'After a rupture',limit:'When a limit is needed'};document.getElementById('quickResult').innerHTML=`<strong>${labels[type]}</strong><ol>${quickCopy[type][clientAge].map(x=>`<li>${x}</li>`).join('')}</ol>`}
+        function val(id,fallback){return document.getElementById(id).value.trim()||fallback}
+        function buildClientScript(type){if(type==='validate')document.getElementById('validateOut').textContent=`${val('vFeeling','You really want something different')}. It makes sense that this is hard. ${val('vLimit','The limit still needs to stay')}. I will stay with you while you feel this.`;if(type==='repair')document.getElementById('repairOut').textContent=`I am sorry that ${val('rAction','I reacted in a way that felt hurtful').toLowerCase()}. That was my responsibility. What was that like for you? Next time I will ${val('rNext','pause and speak more calmly').toLowerCase()}.`;if(type==='honesty')document.getElementById('honestyOut').textContent=`I learned that ${val('lieEvent','what happened was different from what you told me').toLowerCase()}. I want to understand what made honesty feel difficult. I am concerned because ${val('lieNeed','trust and safety matter').toLowerCase()}. Let’s talk about what needs to happen next.`}
+        function decodeClientBehavior(){document.getElementById('behaviorOut').textContent=`I observed: ${val('bObserve','a difficult behavior')}. Just before it: ${val('bBefore','something changed')}. One possibility is: ${document.getElementById('bNeed').value}. First I will help everyone regulate and say, “${val('bBoundary','I will keep everyone safe')}.” Later we can practice: ${val('bSkill','asking for help or a pause')}.`}
+        function planSupport(){document.getElementById('supportOut').textContent=`For “${val('supportTask','this task')},” start with help: ask which part feels hardest and offer one hint. If that is not enough, scaffold one step together, then step back. Take over only if it is unsafe or clearly beyond current capacity.`}
+        const foundationCards=[...document.querySelectorAll('#core-foundations + .grid .card')];foundationCards.forEach((card,i)=>{const b=document.createElement('button');b.className='bookmark-btn';b.type='button';b.setAttribute('aria-label','Bookmark this idea');b.textContent='☆';b.onclick=()=>{const saved=JSON.parse(localStorage.getItem('mpg-en-bookmarks')||'[]');const at=saved.indexOf(i);at>=0?saved.splice(at,1):saved.push(i);localStorage.setItem('mpg-en-bookmarks',JSON.stringify(saved));renderBookmarks();showSaved()};card.appendChild(b)});
+        function renderBookmarks(){const saved=JSON.parse(localStorage.getItem('mpg-en-bookmarks')||'[]');foundationCards.forEach((c,i)=>{const b=c.querySelector('.bookmark-btn'),on=saved.includes(i);b.classList.toggle('saved',on);b.textContent=on?'★':'☆';b.setAttribute('aria-pressed',on)});const list=document.getElementById('takeawayList');const items=saved.map(i=>foundationCards[i].querySelector('h3').textContent);const done=[1,2,3,4,5,6].filter(i=>localStorage.getItem(`mpg-en-answer-${i}`)).length;list.innerHTML=(items.length?items.map(x=>`<li>${x}</li>`).join(''):'<li>No bookmarks yet.</li>')+`<li>${done} of 6 practice scenarios completed.</li>`}
+        function clearClientData(){if(confirm('Clear all reflections, answers, progress, and bookmarks saved by this guide?')){Object.keys(localStorage).filter(k=>k.startsWith('mpg-en-')).forEach(k=>localStorage.removeItem(k));location.reload()}}
+        document.querySelectorAll('[data-age]').forEach(b=>b.classList.toggle('active',b.dataset.age===clientAge));renderBookmarks();
+        document.querySelectorAll('.tooltip-term').forEach(t=>{t.tabIndex=0});
     </script>
 </body>
 </html>
